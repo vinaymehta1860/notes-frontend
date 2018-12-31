@@ -1,13 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import './App.css';
+import LandingPage from './components/LandingPage';
+import Registration from './components/Registration';
 
-class App extends Component {
+class App extends React.Component {
   render() {
     return (
-      <div className="App">
-        <h1>This is the new beginning.</h1>
-        <h2>It's only a matter of time before your life comes through for you..!!</h2>
-      </div>
+      <Router>
+        <div className="App">
+          <Route path="/" exact component={LandingPage} />
+          <Route path="/signin" 
+            render={(props) => <Registration {...props} action={"signin"} val="randomValueToCheck" />}
+          />
+          <Route path="/signup" 
+            render={(props) => <Registration {...props} action={"signup"} val="randomValueToCheck" />}
+          />
+        </div>
+      </Router>
     );
   }
 }
