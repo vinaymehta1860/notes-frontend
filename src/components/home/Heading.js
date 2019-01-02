@@ -13,6 +13,8 @@ class Heading extends React.Component {
   newNote = () => {
     // Have the logic to create new note
     console.log("This is from the new note button.");
+    document.getElementsByClassName("modal")[0].style.display = "block";
+    document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
   }
 
   render () {
