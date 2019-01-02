@@ -3,13 +3,13 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import './App.css';
 import LandingPage from './components/LandingPage';
 import Registration from './components/Registration';
-import TopBar from './components/notes/TopBar';
+import HomePage from './components/home/HomePage';
 
 class App extends React.Component {
   render() {
     return (
       <Router>
-        <div className="App">
+        <div className="app">
           <Route path="/" exact component={LandingPage} />
           
           <Route path="/signin" 
@@ -20,8 +20,8 @@ class App extends React.Component {
             render={(props) => <Registration {...props} action={"signup"} val="randomValueToCheck" />}
           />
 
-          <Route path='/topbar'
-            render={(props) => <TopBar {...props} />}
+          <Route path='/homepage'
+            render={(props) => <HomePage {...props} />}
           />
         </div>
       </Router>
