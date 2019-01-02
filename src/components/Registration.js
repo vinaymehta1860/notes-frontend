@@ -28,7 +28,7 @@ class Registration extends React.Component {
 
     if (action === 'signin') {
       return (
-        <div>
+        <div className="registration">
           <h3>SIGN IN</h3>
           <p>Username: </p>
           <input type="text" />
@@ -40,7 +40,7 @@ class Registration extends React.Component {
     }
     else if (action === 'signup') {
       return (
-        <div>
+        <div  className="registration">
           <h3>SIGN UP</h3>
           <p>Username: </p>
           <input type="text" />

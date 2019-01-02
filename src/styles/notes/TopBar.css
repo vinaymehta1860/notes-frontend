@@ -1,0 +1,12 @@
+/* .edit {
+  background-image: url(../../assets/power.jpg);
+} */
+
+.action-bar {
+  display: block;
+  margin: 10px;
+}
+
+.action-bar button {
+  margin: 0px 3px;
+}
