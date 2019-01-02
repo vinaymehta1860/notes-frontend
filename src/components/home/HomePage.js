@@ -2,6 +2,7 @@ import React from 'react';
 import Owner from './Owner';
 import Shared from './Shared';
 import '../../styles/home/homePage.css';
+import Modal from '../modals/NewNote';
 
 class HomePage extends React.Component {
   // constructor(props) {
@@ -31,6 +32,8 @@ class HomePage extends React.Component {
         <Owner></Owner>
         
         <Shared></Shared>
+
+        <Modal />
       </div>
     );
   }
