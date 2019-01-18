@@ -31,7 +31,7 @@ class Owner extends React.Component {
 
     return (
       <div className="owner">
-        <Heading owner={true} />
+        <Heading owner={true} onClick={this.props.onClick} />
         {/* <Notes notes={this.props.notes}></Notes> */}
         {notesObject.map((note) => <Notes note={note} unshare={true} key={note.title}>{note.title}></Notes>)}
 

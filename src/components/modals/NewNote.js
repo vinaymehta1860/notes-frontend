@@ -19,8 +19,8 @@ class NewNote extends React.Component {
   }
   
   render() {
-    //const includeBottomBar = this.props.includeBottomBar;
-    return (
+    const includeBottomBar = this.props.includeBottomBar;
+    /*return (
       <div className="modal">
         <div className="modal-header">
           <h3 className="modal-heading">New Note</h3>
@@ -36,34 +36,34 @@ class NewNote extends React.Component {
           <button className="create-new-note" onClick={this.createNote}> Create Note</button>
         </div>
       </div>
-    );
-    // if(includeBottomBar) {
-    //   return (
-    //     <React.Fragment>
-    //       <div className="modal-content">
-    //         <p>Title:</p>
-    //         <input type="text" className="note-title" placeholder="Title of note"/>
-    //         <p>Description:</p>
-    //         <input type="text" className="note-description" placeholder="Description of note"/>
-    //       </div>
-    //       <div className="modal-footer">
-    //         <button className="create-new-note" onClick={this.createNote}> Create Note</button>
-    //       </div>
-    //     </React.Fragment>
-    //   );
-    // }
-    // else {
-    //   return (
-    //     <React.Fragment>
-    //       <div className="modal-content">
-    //         <p>Title:</p>
-    //         <input type="text" className="note-title" placeholder="Title of note"/>
-    //         <p>Description:</p>
-    //         <input type="text" className="note-description" placeholder="Description of note"/>
-    //       </div>
-    //     </React.Fragment>
-    //   );
-    // }
+    );*/
+    if(includeBottomBar) {
+      return (
+        <React.Fragment>
+          <div className="modal-content">
+            <p>Title:</p>
+            <input type="text" className="note-title" placeholder="Title of note"/>
+            <p>Description:</p>
+            <input type="text" className="note-description" placeholder="Description of note"/>
+          </div>
+          <div className="modal-footer">
+            <button className="create-new-note" onClick={this.createNote}> Create Note</button>
+          </div>
+        </React.Fragment>
+      );
+    }
+    else {
+      return (
+        <React.Fragment>
+          <div className="modal-content">
+            <p>Title:</p>
+            <input type="text" className="note-title" placeholder="Title of note"/>
+            <p>Description:</p>
+            <input type="text" className="note-description" placeholder="Description of note"/>
+          </div>
+        </React.Fragment>
+      );
+    }
   }
 }
 

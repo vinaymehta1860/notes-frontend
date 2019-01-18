@@ -5,7 +5,7 @@ import LandingPage from './components/LandingPage';
 import Registration from './components/Registration';
 import HomePage from './components/home/HomePage';
 
-const routes= () => (
+const routes = () => (
   <Switch>
     <Route path="/" exact component={LandingPage} />
           
