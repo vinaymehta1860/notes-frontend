@@ -1,25 +1,37 @@
-import React from 'react';
-import '../styles/landingPage.css';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import React from "react";
+import { connect } from "react-redux";
+
+import "../styles/landingPage.css";
+
+// Components
+import Registration from "./registration/Registration";
+import HomePage from "./home/HomePage";
 
 class LandingPage extends React.Component {
-
   render() {
+    const signedIn = this.props.signedIn;
     return (
-        <div className="landing">
-          <h2>Welcome to the Notes Application.</h2>
-          <p>Enjoy creating short notes, sharing it with friends and family for important to-dos.</p>
-          
-          <Link to="/signin">
-            <button className="registration">Sign in</button>
-          </Link>
-          
-          <Link to="/signup">
-            <button className="registration">Sign Up</button>
-          </Link>
-        </div>
+      <div className="landing">
+        <h2>Welcome to the Notes Application.</h2>
+        <p>
+          Enjoy creating short notes, sharing it with friends and family for
+          important to-dos.!
+        </p>
+
+        {!signedIn && <Registration />}
+        {signedIn && <HomePage />}
+      </div>
     );
   }
 }
 
-export default LandingPage;
+const mapStateToProps = state => {
+  return {
+    signedIn: state.application.signedIn
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  {}
+)(LandingPage);

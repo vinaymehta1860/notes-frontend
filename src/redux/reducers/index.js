@@ -1,7 +1,7 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from "redux";
 
-import viewReducer from './viewReducer';
+import applicationReducer from "./applicationReducer";
 
 export default combineReducers({
-  view: viewReducer
+  application: applicationReducer
 });

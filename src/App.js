@@ -1,21 +1,19 @@
 // Libraries
-import React from 'react';
-import { BrowserRouter as Router } from "react-router-dom";
-import { Provider } from 'react-redux';
-import store from './redux';
+import React from "react";
+import { Provider } from "react-redux";
+import store from "./redux";
 
 // Styles
-import './App.css';
+import "./App.css";
 
 // Components
-import Routes from './Routes';
-import Test from './Test';
+import LandingPage from "./components/LandingPage";
 
 class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <Test />
+        <LandingPage />
       </Provider>
     );
   }

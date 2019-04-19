@@ -1,34 +1,33 @@
-import React from 'react';
-import Owner from './Owner';
-import Shared from './Shared';
-import '../../styles/home/homePage.css';
+import React from "react";
+import Owner from "./Owner";
+import Shared from "./Shared";
+import "../../styles/home/homePage.css";
 //import Modal from '../modals/NewNote';
-import Modal from '../modals/OldModal';
+import Modal from "../modals/OldModal";
 
 class HomePage extends React.Component {
-  
   constructor(props) {
     super(props);
 
     this.state = {
       newNote: false
-    }
+    };
   }
 
   handleLogout = () => {
     // Have the logic to handle logout over here
     console.log("This is from the logout function.");
-  }
+  };
 
   showNewNote = () => {
     console.log("New note button clicked.");
-    this.setState({newNote:true});
-  }
+    this.setState({ newNote: true });
+  };
 
   hideNewNote = () => {
     console.log("Hide note button clicked.");
-    this.setState({newNote: false});
-  }
+    this.setState({ newNote: false });
+  };
 
   render() {
     /*
@@ -51,21 +50,21 @@ class HomePage extends React.Component {
         includeBottomBar: true,
         hideNote: this.hideNewNote
       }
-    }
+    };
 
     const newNote = this.state.newNote;
 
     return (
       <div>
-        <button className="action-logout" onClick={this.handleLogout}>Logout</button>
+        <button className="action-logout" onClick={this.handleLogout}>
+          Logout
+        </button>
 
-        <Owner onClick={this.showNewNote} hideNote={this.hideNewNote}/>
-        
+        <Owner onClick={this.showNewNote} hideNote={this.hideNewNote} />
+
         <Shared />
-        
-        {(newNote) &&
-          <Modal {... newNoteProps}/>
-        }
+
+        {newNote && <Modal {...newNoteProps} />}
       </div>
     );
   }
