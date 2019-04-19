@@ -1,5 +1,5 @@
 .modal {
-  display: none;
+  display: block;
   position: fixed;
   width: 650px;
   height: 620px;
