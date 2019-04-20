@@ -1,9 +1,23 @@
 import React from "react";
+import { connect } from "react-redux";
+// import crypto from "crypto";
+
+// Styles
+import "../../styles/home/homePage.css";
+
+// Components
+// import Modal from '../modals/NewNote';
+import Modal from "../modals/OldModal";
 import Owner from "./Owner";
 import Shared from "./Shared";
-import "../../styles/home/homePage.css";
-//import Modal from '../modals/NewNote';
-import Modal from "../modals/OldModal";
+import Button from "../commons/Button";
+
+// Actions
+import {
+  toggleLoading,
+  sessionStorageUpdate,
+  logoutUser
+} from "../../redux/actions";
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -12,11 +26,43 @@ class HomePage extends React.Component {
     this.state = {
       newNote: false
     };
+
+    this.toggleLoading();
   }
 
+  toggleLoading = () => {
+    const { signedIn, sessionToken, sessionTokenStored, username } = this.props;
+
+    // if (signedIn && sessionTokenStored === true) {
+    //   this.props.toggleLoading(false);
+    // }
+
+    if (signedIn && sessionTokenStored === false) {
+      // Directly store the sessionToken and username in localStorage without hashing.
+      //  More on security to be taken care in future.
+      localStorage.setItem("username", username);
+      localStorage.setItem("sessionToken", sessionToken);
+
+      // Change the flag that username has password have been stored in localStorage.
+      this.props.sessionStorageUpdate(true);
+    }
+  };
+
+  /*createHash = valueToHash => {
+    const promise = new Promise((resolve, reject) => {
+      var hash = crypto
+        .createHmac("sha256", valueToHash)
+        .update(Date.now().toString())
+        .digest("hex");
+      resolve(hash);
+    });
+
+    return promise;
+  };*/
+
   handleLogout = () => {
-    // Have the logic to handle logout over here
-    console.log("This is from the logout function.");
+    const { username, sessionToken } = this.props;
+    this.props.logoutUser(username, sessionToken);
   };
 
   showNewNote = () => {
@@ -56,9 +102,10 @@ class HomePage extends React.Component {
 
     return (
       <div>
-        <button className="action-logout" onClick={this.handleLogout}>
+        {/* <button className="action-logout" onClick={this.handleLogout}>
           Logout
-        </button>
+        </button> */}
+        <Button type="primary" text="Logout" onClick={this.handleLogout} />
 
         <Owner onClick={this.showNewNote} hideNote={this.hideNewNote} />
 
@@ -70,4 +117,23 @@ class HomePage extends React.Component {
   }
 }
 
-export default HomePage;
+const mapStateToProps = state => {
+  return {
+    loading: state.application.loading,
+    signedIn: state.application.signedIn,
+    sessionToken: state.application.sessionToken,
+    sessionTokenStored: state.application.sessionTokenStored,
+    username: state.application.username
+  };
+};
+
+const mapDisptachToProps = {
+  toggleLoading,
+  sessionStorageUpdate,
+  logoutUser
+};
+
+export default connect(
+  mapStateToProps,
+  mapDisptachToProps
+)(HomePage);

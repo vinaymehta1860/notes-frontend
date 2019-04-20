@@ -1,9 +1,20 @@
-import { CHANGE_VIEW, REGISTER_SIGNIN, REGISTER_SIGNUP } from "../constants";
+import {
+  CHANGE_VIEW,
+  REGISTER_SIGNIN,
+  REGISTER_SIGNUP,
+  REGISTER_LOGOUT,
+  VERIFY_USER,
+  TOGGLE_LOADING,
+  TOGGLE_SESSIONSTORED
+} from "../constants";
 
 const initialState = {
   sessionToken: null,
   signedIn: false,
-  username: null
+  username: null,
+  loading: true,
+  sessionTokenStored: false,
+  message: ""
 };
 
 const application = (state = initialState, action) => {
@@ -53,6 +64,46 @@ const application = (state = initialState, action) => {
           signedIn: false
         };
       }
+    case VERIFY_USER:
+      const uname = action.payload.username,
+        sToken = action.payload.sessionToken,
+        msg = action.payload.message,
+        done = action.payload.success;
+      if (done) {
+        return {
+          ...state,
+          username: uname,
+          sessionToken: sToken,
+          signedIn: true
+        };
+      } else {
+        return {
+          ...state,
+          signedIn: false,
+          message: msg
+        };
+      }
+    case REGISTER_LOGOUT:
+      return {
+        ...state,
+        sessionToken: null,
+        signedIn: false,
+        username: null
+      };
+    case TOGGLE_LOADING:
+      const { loading } = action.payload;
+
+      return {
+        ...state,
+        loading
+      };
+    case TOGGLE_SESSIONSTORED:
+      const { sessionStoreValue } = action.payload;
+
+      return {
+        ...state,
+        sessionTokenStored: sessionStoreValue
+      };
     default:
       return state;
   }

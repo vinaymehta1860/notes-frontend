@@ -44,7 +44,7 @@ class SignIn extends React.Component {
         />
         <p>Password: </p>
         <input
-          type="text"
+          type="password"
           value={this.state.password}
           onChange={this.handlePasswordChange}
         />
