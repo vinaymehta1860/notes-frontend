@@ -3,7 +3,11 @@ import {
   CHANGE_VIEW,
   REGISTER_SIGNIN,
   REGISTER_SIGNUP,
-  ERROR_STATE
+  REGISTER_LOGOUT,
+  VERIFY_USER,
+  ERROR_STATE,
+  TOGGLE_LOADING,
+  TOGGLE_SESSIONSTORED
 } from "../constants";
 
 export const changeView = text => {
@@ -15,6 +19,25 @@ export const changeView = text => {
   };
 };
 
+export const toggleLoading = loading => {
+  return {
+    type: TOGGLE_LOADING,
+    payload: {
+      loading
+    }
+  };
+};
+
+export const sessionStorageUpdate = sessionStoreValue => {
+  return {
+    type: TOGGLE_SESSIONSTORED,
+    payload: {
+      sessionStoreValue
+    }
+  };
+};
+
+// Action to signin user
 export const registerSignIn = (username, password) => dispatch => {
   return axios({
     method: "post",
@@ -28,10 +51,10 @@ export const registerSignIn = (username, password) => dispatch => {
       dispatch({
         type: REGISTER_SIGNIN,
         payload: {
+          message: resp.data.message,
           success: resp.data.success,
-          username: resp.data.payload.username,
           sessionToken: resp.data.payload.sessionToken,
-          message: resp.data.message
+          username: resp.data.payload.username
         }
       });
     })
@@ -45,6 +68,7 @@ export const registerSignIn = (username, password) => dispatch => {
     });
 };
 
+// Action to signup user
 export const registerSignUp = (username, email, password) => dispatch => {
   return axios({
     method: "post",
@@ -59,10 +83,10 @@ export const registerSignUp = (username, email, password) => dispatch => {
       dispatch({
         type: REGISTER_SIGNUP,
         payload: {
+          message: resp.data.message,
           success: resp.data.success,
-          username: resp.data.payload.username,
           sessionToken: resp.data.payload.sessionToken,
-          message: resp.data.message
+          username: resp.data.payload.username
         }
       });
     })
@@ -71,6 +95,62 @@ export const registerSignUp = (username, email, password) => dispatch => {
         type: ERROR_STATE,
         payload: {
           error: error
+        }
+      });
+    });
+};
+
+// Action to check the localStorage values, verify and sign in user
+export const verifyUser = (username, sessionToken) => dispatch => {
+  return axios({
+    method: "post",
+    url: "http://localhost:4000/registration/verifyLoggedInUser",
+    data: {
+      username,
+      sessionToken
+    }
+  })
+    .then(resp => {
+      dispatch({
+        type: VERIFY_USER,
+        payload: {
+          success: resp.data.success,
+          message: resp.data.message,
+          username: resp.data.payload.username,
+          sessionToken: resp.data.payload.sessionToken
+        }
+      });
+    })
+    .catch(error => {
+      dispatch({
+        type: ERROR_STATE,
+        payload: {
+          error
+        }
+      });
+    });
+};
+
+// Action to logout user
+export const logoutUser = (username, sessionToken) => dispatch => {
+  return axios({
+    method: "post",
+    url: "http://localhost:4000/registration/logout",
+    data: {
+      username,
+      sessionToken
+    }
+  })
+    .then(resp => {
+      dispatch({
+        type: REGISTER_LOGOUT
+      });
+    })
+    .catch(error => {
+      dispatch({
+        type: ERROR_STATE,
+        payload: {
+          error
         }
       });
     });
