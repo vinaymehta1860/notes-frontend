@@ -19,8 +19,9 @@ class LandingPage extends React.Component {
   componentWillMount() {
     const sessionToken = localStorage.getItem("sessionToken");
     const username = localStorage.getItem("username");
+    const firstname = localStorage.getItem("firstname");
     if (sessionToken && username) {
-      this.props.verifyUser(username, sessionToken);
+      this.props.verifyUser(firstname, username, sessionToken);
     }
   }
 
@@ -31,14 +32,16 @@ class LandingPage extends React.Component {
       this.props.sessionStorageUpdate(false);
       localStorage.removeItem("username");
       localStorage.removeItem("sessionToken");
+      localStorage.removeItem("firstname");
     }
   }
 
   render() {
-    const signedIn = this.props.signedIn;
+    const { signedIn, firstname } = this.props;
     return (
       <div className="landing">
-        <h2>Welcome to the Notes Application.</h2>
+        {firstname && <h1>Hi {firstname}..!!</h1>}
+        <h2>Welcome to the Notes Application.!</h2>
         <p>
           Enjoy creating short notes, sharing it with friends and family for
           important to-dos.!
@@ -53,6 +56,7 @@ class LandingPage extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    firstname: state.application.firstname,
     signedIn: state.application.signedIn
   };
 };

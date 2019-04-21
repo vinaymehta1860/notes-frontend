@@ -9,6 +9,7 @@ import {
 } from "../constants";
 
 const initialState = {
+  firstname: null,
   sessionToken: null,
   signedIn: false,
   username: null,
@@ -27,11 +28,18 @@ const application = (state = initialState, action) => {
         text: text
       };
     case REGISTER_SIGNIN:
-      const { success, username, sessionToken, message } = action.payload;
+      const {
+        firstname,
+        success,
+        username,
+        sessionToken,
+        message
+      } = action.payload;
 
       if (success) {
         return {
           ...state,
+          firstname,
           username,
           sessionToken,
           signedIn: true
@@ -47,12 +55,14 @@ const application = (state = initialState, action) => {
       // FIXME: Had to do odd name spacing for the variables as react-redux wasn't allowing to grab
       //  same variables out of action.payload in the same way as it's done in the above switch case.
       const success1 = action.payload.success,
+        firstname1 = action.payload.firstname,
         username1 = action.payload.username,
         sessionToken1 = action.payload.sessionToken,
         message1 = action.payload.message;
       if (success1) {
         return {
           ...state,
+          firstname: firstname1,
           username: username1,
           sessionToken: sessionToken1,
           signedIn: true
@@ -66,12 +76,14 @@ const application = (state = initialState, action) => {
       }
     case VERIFY_USER:
       const uname = action.payload.username,
+        fname = action.payload.firstname,
         sToken = action.payload.sessionToken,
         msg = action.payload.message,
         done = action.payload.success;
       if (done) {
         return {
           ...state,
+          firstname: fname,
           username: uname,
           sessionToken: sToken,
           signedIn: true
@@ -86,6 +98,7 @@ const application = (state = initialState, action) => {
     case REGISTER_LOGOUT:
       return {
         ...state,
+        firstname: null,
         sessionToken: null,
         signedIn: false,
         username: null

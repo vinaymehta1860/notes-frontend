@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 import "../../styles/registration.css";
 
 // Components
-import Button from "../commons/Button";
+// import Button from "../commons/Button";
+import Button from "@material-ui/core/Button";
 
 // Actions
 import { registerSignIn } from "../../redux/actions";
@@ -29,6 +30,11 @@ class SignIn extends React.Component {
 
   handleSignin = () => {
     const { username, password } = this.state;
+
+    if (username === "" || password === "") {
+      return;
+    }
+
     this.props.registerSignIn(username, password);
   };
 
@@ -50,7 +56,10 @@ class SignIn extends React.Component {
         />
         <br />
         <br />
-        <Button type="primary" text="Sign In" onClick={this.handleSignin} />
+        {/* <Button type="primary" text="Sign In" onClick={this.handleSignin} /> */}
+        <Button variant="contained" color="primary" onClick={this.handleSignin}>
+          Sign In
+        </Button>
       </div>
     );
   }

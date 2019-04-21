@@ -10,7 +10,8 @@ import "../../styles/home/homePage.css";
 import Modal from "../modals/OldModal";
 import Owner from "./Owner";
 import Shared from "./Shared";
-import Button from "../commons/Button";
+// import Button from "../commons/Button";
+import Button from "@material-ui/core/Button";
 
 // Actions
 import {
@@ -31,7 +32,13 @@ class HomePage extends React.Component {
   }
 
   toggleLoading = () => {
-    const { signedIn, sessionToken, sessionTokenStored, username } = this.props;
+    const {
+      firstname,
+      signedIn,
+      sessionToken,
+      sessionTokenStored,
+      username
+    } = this.props;
 
     // if (signedIn && sessionTokenStored === true) {
     //   this.props.toggleLoading(false);
@@ -40,10 +47,11 @@ class HomePage extends React.Component {
     if (signedIn && sessionTokenStored === false) {
       // Directly store the sessionToken and username in localStorage without hashing.
       //  More on security to be taken care in future.
+      localStorage.setItem("firstname", firstname);
       localStorage.setItem("username", username);
       localStorage.setItem("sessionToken", sessionToken);
 
-      // Change the flag that username has password have been stored in localStorage.
+      // Change the flag that username and password have been stored in localStorage.
       this.props.sessionStorageUpdate(true);
     }
   };
@@ -102,10 +110,13 @@ class HomePage extends React.Component {
 
     return (
       <div>
-        {/* <button className="action-logout" onClick={this.handleLogout}>
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={this.handleLogout}
+        >
           Logout
-        </button> */}
-        <Button type="primary" text="Logout" onClick={this.handleLogout} />
+        </Button>
 
         <Owner onClick={this.showNewNote} hideNote={this.hideNewNote} />
 
@@ -119,6 +130,7 @@ class HomePage extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    firstname: state.application.firstname,
     loading: state.application.loading,
     signedIn: state.application.signedIn,
     sessionToken: state.application.sessionToken,

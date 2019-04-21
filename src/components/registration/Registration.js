@@ -2,11 +2,13 @@ import React from "react";
 import { connect } from "react-redux";
 
 import "../../styles/registration.css";
+import "../commons/forcedStyles.css";
 
 // Components
 import SignIn from "./SignIn.js";
 import SignUp from "./SignUp.js";
-import Button from "../commons/Button";
+// import Button from "../commons/Button";
+import Button from "@material-ui/core/Button";
 
 class Registration extends React.Component {
   constructor(props) {
@@ -32,21 +34,15 @@ class Registration extends React.Component {
 
     if (pageView === "signin") {
       button = (
-        <Button
-          type="primary"
-          text="Go to Sign Up"
-          disabled={false}
-          onClick={this.changeView}
-        />
+        <Button variant="contained" color="primary" onClick={this.changeView}>
+          Sign Up?
+        </Button>
       );
     } else if (pageView === "signup") {
       button = (
-        <Button
-          type="primary"
-          text="Go to Sign In"
-          disabled={false}
-          onClick={this.changeView}
-        />
+        <Button variant="contained" color="primary" onClick={this.changeView}>
+          Sign In?
+        </Button>
       );
     }
 
