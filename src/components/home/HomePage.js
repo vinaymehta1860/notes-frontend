@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 // import crypto from "crypto";
 
 // Styles
-import "../../styles/home/homePage.css";
+import "./homePage.scss";
 
 // Components
 // import Modal from '../modals/NewNote';

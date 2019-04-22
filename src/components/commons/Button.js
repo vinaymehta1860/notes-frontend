@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./Button.css";
+import "./Button.scss";
 
 /*
   This component will require the following props

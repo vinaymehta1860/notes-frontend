@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import "../../styles/registration.css";
+import "./registration.scss";
 
 // Components
 // import Button from "../commons/Button";

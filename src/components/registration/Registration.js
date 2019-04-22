@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import "../../styles/registration.css";
-import "../commons/forcedStyles.css";
+import "./registration.scss";
+import "../commons/forcedStyles.scss";
 
 // Components
 import SignIn from "./SignIn.js";

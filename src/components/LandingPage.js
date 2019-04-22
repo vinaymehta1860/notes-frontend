@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 // import crypto from "crypto";
 
-import "../styles/landingPage.css";
+import "./landingPage.scss";
 
 // Components
 import Registration from "./registration/Registration";
