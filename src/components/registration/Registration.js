@@ -1,13 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
 
+// Styles
 import "./registration.scss";
 import "../commons/forcedStyles.scss";
 
 // Components
 import SignIn from "./SignIn.js";
 import SignUp from "./SignUp.js";
-// import Button from "../commons/Button";
 import Button from "@material-ui/core/Button";
 
 class Registration extends React.Component {
@@ -35,13 +35,13 @@ class Registration extends React.Component {
     if (pageView === "signin") {
       button = (
         <Button variant="contained" color="primary" onClick={this.changeView}>
-          Sign Up?
+          Create Account
         </Button>
       );
     } else if (pageView === "signup") {
       button = (
         <Button variant="contained" color="primary" onClick={this.changeView}>
-          Sign In?
+          Already have an accoun with us?
         </Button>
       );
     }

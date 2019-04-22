@@ -1,10 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 
+// Styles
 import "./registration.scss";
+import "../commons/forcedStyles.scss";
 
 // Components
-// import Button from "../commons/Button";
 import Button from "@material-ui/core/Button";
 
 // Actions
@@ -62,42 +63,46 @@ class SignUp extends React.Component {
   render() {
     return (
       <div className="notes registration-signup">
-        <h3>SIGN UP</h3>
+        <h3>Give us some info to set you up.!</h3>
         <p>First Name: </p>
         <input
           type="text"
           value={this.state.firstname}
           onChange={this.handleFirstnameChange}
+          placeholder="Fistname"
         />
         <p>Last Name: </p>
         <input
           type="text"
           value={this.state.lastname}
           onChange={this.handleLastnameChange}
+          placeholder="Lastname"
         />
         <p>Username: </p>
         <input
           type="text"
           value={this.state.username}
           onChange={this.handleUsernameChange}
+          placeholder="Username"
         />
         <p>Email: </p>
         <input
           type="text"
           value={this.state.email}
           onChange={this.handleEmailChange}
+          placeholder="Email"
         />
         <p>Password: </p>
         <input
           type="password"
           value={this.state.password}
           onChange={this.handlePasswordChange}
+          placeholder="Password"
         />
         <br />
         <br />
-        {/* <Button type="primary" text="Sign Up" onClick={this.handleSignup} /> */}
         <Button variant="contained" color="primary" onClick={this.handleSignup}>
-          Sign Up
+          Get me started
         </Button>
       </div>
     );

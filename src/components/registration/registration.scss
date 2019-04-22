@@ -1,6 +1,22 @@
 .registration {
+  background-color: #fffafa;
   margin: auto;
-  width: 50%;
-  width: 600px;
+  padding: 25px;
+  width: 500px;
   text-align: center;
+  box-shadow: 5px 5px 5px 5px #e0e0e0;
+}
+
+input[type="text"] {
+  width: 250px;
+  height: 25px;
+  border-color: #bdbdbd;
+  border-radius: 3px;
+}
+
+input[type="password"] {
+  width: 250px;
+  height: 25px;
+  border-color: #bdbdbd;
+  border-radius: 3px;
 }
