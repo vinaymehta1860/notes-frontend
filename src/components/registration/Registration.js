@@ -1,12 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import "../../styles/registration.css";
+// Styles
+import "./registration.scss";
+import "../commons/forcedStyles.scss";
 
 // Components
 import SignIn from "./SignIn.js";
 import SignUp from "./SignUp.js";
-import Button from "../commons/Button";
+import Button from "@material-ui/core/Button";
 
 class Registration extends React.Component {
   constructor(props) {
@@ -32,29 +34,32 @@ class Registration extends React.Component {
 
     if (pageView === "signin") {
       button = (
-        <Button
-          type="primary"
-          text="Go to Sign Up"
-          disabled={false}
-          onClick={this.changeView}
-        />
+        <Button variant="contained" color="primary" onClick={this.changeView}>
+          Create Account
+        </Button>
       );
     } else if (pageView === "signup") {
       button = (
-        <Button
-          type="primary"
-          text="Go to Sign In"
-          disabled={false}
-          onClick={this.changeView}
-        />
+        <Button variant="contained" color="primary" onClick={this.changeView}>
+          Already have an accoun with us?
+        </Button>
       );
     }
 
     return (
       <div className="notes registration">
-        {pageView === "signin" && <SignIn />}
-        {pageView === "signup" && <SignUp />}
-        {button}
+        <div className="registration-text">
+          <h2>Welcome to the Notes Application.!</h2>
+          <p>
+            Enjoy creating short notes, sharing it with friends and family for
+            important to-dos.!
+          </p>
+        </div>
+        <div className="registration-content">
+          {pageView === "signin" && <SignIn />}
+          {pageView === "signup" && <SignUp />}
+        </div>
+        <div className="registration-footer">{button}</div>
       </div>
     );
   }

@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 //import Modal from '../modals/Modal';
-import '../../styles/home/heading.css'
+import "./heading.scss";
 
 class Heading extends React.Component {
   constructor(props) {
@@ -9,7 +9,7 @@ class Heading extends React.Component {
     this.state = {
       owner: this.props.owner,
       newNote: false
-    }
+    };
   }
 
   // newNote = () => {
@@ -20,24 +20,26 @@ class Heading extends React.Component {
   //   document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
   // }
 
-  render () {
+  render() {
     // const modal = {
     //   includeBottomBar: true
     // }
 
-    if( this.state.owner === true && !this.state.newNote) {
+    if (this.state.owner === true && !this.state.newNote) {
       return (
         <div className="heading">
           <h3 className="title-bar">My Notes</h3>
-          <button className="new-note" onClick={this.props.onClick}>Create New Note</button>
+          <button className="new-note" onClick={this.props.onClick}>
+            Create New Note
+          </button>
         </div>
       );
     }
     // else if(this.state.newNote) {
     //   return (
-    //     <Modal title="New Note" 
+    //     <Modal title="New Note"
     //       close={true} cancel={false} success={false} successButtonText="Create New Note" modal={modal}
-    //       style={{display: "block"}}  
+    //       style={{display: "block"}}
     //     />
     //   );
     // }
