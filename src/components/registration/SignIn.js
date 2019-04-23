@@ -16,50 +16,76 @@ class SignIn extends React.Component {
     super(props);
 
     this.state = {
-      username: "",
-      password: ""
+      _username: "",
+      _password: "",
+      _error: false,
+      _errorMessage: ""
     };
   }
 
   handleUsernameChange = event => {
-    this.setState({ username: event.target.value });
+    this.setState({ _username: event.target.value });
   };
 
   handlePasswordChange = event => {
-    this.setState({ password: event.target.value });
+    this.setState({ _password: event.target.value });
   };
 
   handleSignin = () => {
-    const { username, password } = this.state;
+    const { _username, _password } = this.state;
 
-    if (username === "" || password === "") {
+    if (_username === "" || _password === "") {
+      this.setState({
+        _error: true,
+        _errorMessage: "Username/Password can't be empty.!"
+      });
       return;
     }
 
-    this.props.registerSignIn(username, password);
+    this.props.registerSignIn(_username, _password);
   };
 
   render() {
+    const { _username, _password, _error, _errorMessage } = this.state;
+    let disabled = false;
+
+    if (_error) {
+      disabled = true;
+    } else if (_username === "" || _password === "") {
+      disabled = true;
+    }
+
     return (
       <div className="notes registration-signin">
         <h3>Hop right in.!</h3>
         <p>Username: </p>
         <input
           type="text"
-          value={this.state.username}
+          value={_username}
           onChange={this.handleUsernameChange}
           placeholder="Username"
+          autoFocus
         />
         <p>Password: </p>
         <input
           type="password"
-          value={this.state.password}
+          value={_password}
           onChange={this.handlePasswordChange}
           placeholder="Password"
         />
         <br />
         <br />
-        <Button variant="contained" color="primary" onClick={this.handleSignin}>
+        {_error && (
+          <div className="registration-error">
+            <p>{_errorMessage}</p>
+          </div>
+        )}
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={this.handleSignin}
+          disabled={disabled}
+        >
           Get me in
         </Button>
       </div>

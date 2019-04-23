@@ -1,10 +1,23 @@
 .registration {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   background-color: #fffafa;
   margin: auto;
   padding: 25px;
   width: 500px;
   text-align: center;
-  box-shadow: 5px 5px 5px 5px #e0e0e0;
+  box-shadow: 3px 3px 3px 3px #e0e0e0;
+
+  .registration-error {
+    margin: auto;
+    background-color: transparent;
+
+    p {
+      text-align: center;
+      color: red;
+    }
+  }
 }
 
 input[type="text"] {
