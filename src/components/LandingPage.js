@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 // import crypto from "crypto";
 
-import "../styles/landingPage.css";
+import "./landingPage.scss";
 
 // Components
 import Registration from "./registration/Registration";
@@ -19,8 +19,9 @@ class LandingPage extends React.Component {
   componentWillMount() {
     const sessionToken = localStorage.getItem("sessionToken");
     const username = localStorage.getItem("username");
+    const firstname = localStorage.getItem("firstname");
     if (sessionToken && username) {
-      this.props.verifyUser(username, sessionToken);
+      this.props.verifyUser(firstname, username, sessionToken);
     }
   }
 
@@ -31,19 +32,15 @@ class LandingPage extends React.Component {
       this.props.sessionStorageUpdate(false);
       localStorage.removeItem("username");
       localStorage.removeItem("sessionToken");
+      localStorage.removeItem("firstname");
     }
   }
 
   render() {
-    const signedIn = this.props.signedIn;
+    const { signedIn } = this.props;
+
     return (
       <div className="landing">
-        <h2>Welcome to the Notes Application.</h2>
-        <p>
-          Enjoy creating short notes, sharing it with friends and family for
-          important to-dos.!
-        </p>
-
         {!signedIn && <Registration />}
         {signedIn && <HomePage />}
       </div>

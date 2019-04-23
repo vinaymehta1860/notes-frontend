@@ -1,5 +1,5 @@
-import React from 'react';
-import '../../styles/modals/newNote.css';
+import React from "react";
+import "./newNote.scss";
 
 class NewNote extends React.Component {
   closeModal = () => {
@@ -7,17 +7,17 @@ class NewNote extends React.Component {
     console.log("This is from the close modal button.");
     document.getElementsByClassName("modal")[0].style.display = "none";
     document.body.style.backgroundColor = "white";
-  }
+  };
 
   createNote = () => {
     // Have the logic to create new note here
     console.log("This is from the new note button.");
-    
+
     // After calling the API to create a note, close the modal
     document.getElementsByClassName("modal")[0].style.display = "none";
     document.body.style.backgroundColor = "white";
-  }
-  
+  };
+
   render() {
     const includeBottomBar = this.props.includeBottomBar;
     /*return (
@@ -37,29 +37,47 @@ class NewNote extends React.Component {
         </div>
       </div>
     );*/
-    if(includeBottomBar) {
+    if (includeBottomBar) {
       return (
         <React.Fragment>
           <div className="modal-content">
             <p>Title:</p>
-            <input type="text" className="note-title" placeholder="Title of note"/>
+            <input
+              type="text"
+              className="note-title"
+              placeholder="Title of note"
+            />
             <p>Description:</p>
-            <input type="text" className="note-description" placeholder="Description of note"/>
+            <input
+              type="text"
+              className="note-description"
+              placeholder="Description of note"
+            />
           </div>
           <div className="modal-footer">
-            <button className="create-new-note" onClick={this.createNote}> Create Note</button>
+            <button className="create-new-note" onClick={this.createNote}>
+              {" "}
+              Create Note
+            </button>
           </div>
         </React.Fragment>
       );
-    }
-    else {
+    } else {
       return (
         <React.Fragment>
           <div className="modal-content">
             <p>Title:</p>
-            <input type="text" className="note-title" placeholder="Title of note"/>
+            <input
+              type="text"
+              className="note-title"
+              placeholder="Title of note"
+            />
             <p>Description:</p>
-            <input type="text" className="note-description" placeholder="Description of note"/>
+            <input
+              type="text"
+              className="note-description"
+              placeholder="Description of note"
+            />
           </div>
         </React.Fragment>
       );

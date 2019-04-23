@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import store from "./redux";
 
 // Styles
-import "./App.css";
+import "./App.scss";
 
 // Components
 import LandingPage from "./components/LandingPage";

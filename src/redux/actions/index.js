@@ -51,6 +51,7 @@ export const registerSignIn = (username, password) => dispatch => {
       dispatch({
         type: REGISTER_SIGNIN,
         payload: {
+          firstname: resp.data.payload.firstname,
           message: resp.data.message,
           success: resp.data.success,
           sessionToken: resp.data.payload.sessionToken,
@@ -69,11 +70,19 @@ export const registerSignIn = (username, password) => dispatch => {
 };
 
 // Action to signup user
-export const registerSignUp = (username, email, password) => dispatch => {
+export const registerSignUp = (
+  firstname,
+  lastname,
+  username,
+  email,
+  password
+) => dispatch => {
   return axios({
     method: "post",
     url: "http://localhost:4000/registration/signup",
     data: {
+      firstname,
+      lastname,
       username,
       email,
       password
@@ -83,6 +92,7 @@ export const registerSignUp = (username, email, password) => dispatch => {
       dispatch({
         type: REGISTER_SIGNUP,
         payload: {
+          firstname: resp.data.payload.firstname,
           message: resp.data.message,
           success: resp.data.success,
           sessionToken: resp.data.payload.sessionToken,
@@ -101,7 +111,7 @@ export const registerSignUp = (username, email, password) => dispatch => {
 };
 
 // Action to check the localStorage values, verify and sign in user
-export const verifyUser = (username, sessionToken) => dispatch => {
+export const verifyUser = (firstname, username, sessionToken) => dispatch => {
   return axios({
     method: "post",
     url: "http://localhost:4000/registration/verifyLoggedInUser",
@@ -114,6 +124,7 @@ export const verifyUser = (username, sessionToken) => dispatch => {
       dispatch({
         type: VERIFY_USER,
         payload: {
+          firstname: resp.data.payload.firstname,
           success: resp.data.success,
           message: resp.data.message,
           username: resp.data.payload.username,

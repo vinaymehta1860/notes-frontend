@@ -1,10 +1,9 @@
-import React from 'react';
-import Notes from '../notes/Notes';
-import Heading from './Heading';
-import '../../styles/home/owner.css'
+import React from "react";
+import Notes from "../notes/Notes";
+import Heading from "./Heading";
+import "./owner.scss";
 
 class Owner extends React.Component {
-
   /*
     This component will get the owner object from HomePage and will go through
     each of the note in that array and render it on the HomePage.
@@ -27,14 +26,17 @@ class Owner extends React.Component {
         desc: "This is third note for owner.",
         canEdit: true
       }
-    ]
+    ];
 
     return (
       <div className="owner">
         <Heading owner={true} onClick={this.props.onClick} />
         {/* <Notes notes={this.props.notes}></Notes> */}
-        {notesObject.map((note) => <Notes note={note} unshare={true} key={note.title}>{note.title}></Notes>)}
-
+        {notesObject.map(note => (
+          <Notes note={note} unshare={true} key={note.title}>
+            {note.title}>
+          </Notes>
+        ))}
       </div>
     );
   }

@@ -1,10 +1,9 @@
-import React from 'react';
-import Notes from '../notes/Notes';
-import Heading from './Heading';
-import '../../styles/home/shared.css'
+import React from "react";
+import Notes from "../notes/Notes";
+import Heading from "./Heading";
+import "./shared.scss";
 
 class Shared extends React.Component {
-
   /*
     This component will get the shared object from HomePage and will go through
     each of the note in that array and render it on the HomePage.
@@ -21,13 +20,17 @@ class Shared extends React.Component {
         desc: "This is the description for note object.",
         canEdit: true
       }
-    ]
+    ];
 
     return (
       <div className="shared">
         <Heading owner={false} />
         {/* <Notes note={notesObject}></Notes> */}
-        {notesObject.map((note) => <Notes note={note} key={note.title}>{note.title}></Notes>)}
+        {notesObject.map(note => (
+          <Notes note={note} key={note.title}>
+            {note.title}>
+          </Notes>
+        ))}
       </div>
     );
   }
