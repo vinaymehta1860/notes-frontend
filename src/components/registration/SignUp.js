@@ -119,65 +119,81 @@ class SignUp extends React.Component {
 
     return (
       <div className="notes registration-signup">
-        <h3>Give us some info to set you up.!</h3>
-        <p>First Name: </p>
-        <input
-          type="text"
-          value={_firstname}
-          onChange={this.handleFirstnameChange}
-          placeholder="Fistname"
-          autoFocus
-        />
-        <p>Last Name: </p>
-        <input
-          type="text"
-          value={_lastname}
-          onChange={this.handleLastnameChange}
-          placeholder="Lastname"
-        />
-        <p>Username: </p>
-        <input
-          type="text"
-          value={_username}
-          onChange={this.handleUsernameChange}
-          placeholder="Username"
-        />
-        <p>Email: </p>
-        <input
-          type="text"
-          value={_email}
-          onChange={this.handleEmailChange}
-          placeholder="Email"
-        />
-        <p>Password: </p>
-        <input
-          type="password"
-          value={_password}
-          onChange={this.handlePasswordChange}
-          placeholder="Password"
-        />
-        <p>Confirm Password: </p>
-        <input
-          type="password"
-          value={_confirmPassword}
-          onChange={this.handleConfirmPasswordChange}
-          placeholder="Password"
-        />
-        <br />
-        <br />
+        <div className="registration-signup-heading">
+          <h3>Give us some info to set you up.!</h3>
+        </div>
+        <div className="registration-signup-content">
+          <div className="registration-signup-content-field">
+            <span>Firstname</span>
+            <input
+              type="text"
+              value={_firstname}
+              onChange={this.handleFirstnameChange}
+              placeholder="Fistname"
+              autoFocus
+            />
+          </div>
+          <div className="registration-signup-content-field">
+            <span>Last Name</span>
+            <input
+              type="text"
+              value={_lastname}
+              onChange={this.handleLastnameChange}
+              placeholder="Lastname"
+            />
+          </div>
+          <div className="registration-signup-content-field">
+            <span>Username</span>
+            <input
+              type="text"
+              value={_username}
+              onChange={this.handleUsernameChange}
+              placeholder="Username"
+            />
+          </div>
+          <div className="registration-signup-content-field">
+            <span>Email</span>
+            <input
+              type="text"
+              value={_email}
+              onChange={this.handleEmailChange}
+              placeholder="Email"
+            />
+          </div>
+          <div className="registration-signup-content-field">
+            <span>Password</span>
+            <input
+              type="password"
+              value={_password}
+              onChange={this.handlePasswordChange}
+              placeholder="Password"
+            />
+          </div>
+          <div className="registration-signup-content-field">
+            <span>Password</span>
+            <input
+              type="password"
+              value={_confirmPassword}
+              onChange={this.handleConfirmPasswordChange}
+              placeholder="Confirm Password"
+            />
+          </div>
+        </div>
         {_error && (
           <div className="registration-error">
             <p>{_errorMessage}</p>
           </div>
         )}
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={this.handleSignup}
-          disabled={disabled}
-        >
-          Get me started
-        </Button>
+        <div className="registration-signup-footer">
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={this.handleSignup}
+            disabled={disabled}
+          >
+            Get me started
+          </Button>
+        </div>
       </div>
     );
   }

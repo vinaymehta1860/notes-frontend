@@ -48,9 +48,18 @@ class Registration extends React.Component {
 
     return (
       <div className="notes registration">
-        {pageView === "signin" && <SignIn />}
-        {pageView === "signup" && <SignUp />}
-        {button}
+        <div className="registration-text">
+          <h2>Welcome to the Notes Application.!</h2>
+          <p>
+            Enjoy creating short notes, sharing it with friends and family for
+            important to-dos.!
+          </p>
+        </div>
+        <div className="registration-content">
+          {pageView === "signin" && <SignIn />}
+          {pageView === "signup" && <SignUp />}
+        </div>
+        <div className="registration-footer">{button}</div>
       </div>
     );
   }

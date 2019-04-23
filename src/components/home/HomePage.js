@@ -108,8 +108,11 @@ class HomePage extends React.Component {
 
     const newNote = this.state.newNote;
 
+    const { firstname } = this.props;
+
     return (
       <div>
+        {firstname && <h1>Hi {firstname}..!!</h1>}
         <Button
           variant="contained"
           color="secondary"

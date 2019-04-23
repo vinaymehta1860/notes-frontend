@@ -37,16 +37,10 @@ class LandingPage extends React.Component {
   }
 
   render() {
-    const { signedIn, firstname } = this.props;
+    const { signedIn } = this.props;
+
     return (
       <div className="landing">
-        {firstname && <h1>Hi {firstname}..!!</h1>}
-        <h2>Welcome to the Notes Application.!</h2>
-        <p>
-          Enjoy creating short notes, sharing it with friends and family for
-          important to-dos.!
-        </p>
-
         {!signedIn && <Registration />}
         {signedIn && <HomePage />}
       </div>
@@ -56,7 +50,6 @@ class LandingPage extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    firstname: state.application.firstname,
     signedIn: state.application.signedIn
   };
 };

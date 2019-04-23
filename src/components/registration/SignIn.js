@@ -58,7 +58,7 @@ class SignIn extends React.Component {
     return (
       <div className="notes registration-signin">
         <h3>Hop right in.!</h3>
-        <p>Username: </p>
+        <p>Username</p>
         <input
           type="text"
           value={_username}
@@ -66,7 +66,7 @@ class SignIn extends React.Component {
           placeholder="Username"
           autoFocus
         />
-        <p>Password: </p>
+        <p>Password</p>
         <input
           type="password"
           value={_password}
