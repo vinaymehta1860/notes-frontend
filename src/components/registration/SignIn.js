@@ -31,6 +31,13 @@ class SignIn extends React.Component {
     this.setState({ _password: event.target.value });
   };
 
+  keyPressed = event => {
+    const { _username, _password } = this.state;
+    if (event.key === "Enter" && _username !== "" && _password !== "") {
+      this.props.registerSignIn(_username, _password);
+    }
+  };
+
   handleSignin = () => {
     const { _username, _password } = this.state;
 
@@ -72,6 +79,7 @@ class SignIn extends React.Component {
           value={_password}
           onChange={this.handlePasswordChange}
           placeholder="Password"
+          onKeyPress={this.keyPressed}
         />
         <br />
         <br />

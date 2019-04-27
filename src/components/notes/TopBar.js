@@ -2,14 +2,14 @@ import React from "react";
 import "./TopBar.scss";
 
 class TopBar extends React.Component {
-  constructor(props) {
-    super(props);
+  // constructor(props) {
+  //   super(props);
 
-    this.state = {
-      canEdit: this.props.canEdit,
-      unshare: this.props.unshare
-    };
-  }
+  //   this.state = {
+  //     canEdit: this.props.canEdit,
+  //     unshare: this.props.unshare
+  //   };
+  // }
 
   editNote = () => {
     // Have the logic to edit a note
@@ -28,11 +28,10 @@ class TopBar extends React.Component {
   };
 
   render() {
-    const canEdit = this.state.canEdit,
-      unshare = this.state.unshare;
+    const { owner, unshare } = this.props;
     let editButton, shareButton, deleteButton, unshareButton;
 
-    if (canEdit) {
+    if (owner) {
       editButton = (
         <button className="edit" onClick={this.editNote}>
           Edit

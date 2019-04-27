@@ -1,3 +1,30 @@
-.action-logout {
-  margin: 5px;
+.homepage {
+  display: flex;
+  flex-direction: column;
+
+  .homepage-header {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 2.5px;
+    padding: 0px 10px;
+    justify-content: space-between;
+    background-color: #fafad2;
+    border: 1px solid #fafad2;
+    border-radius: 15px;
+
+    .homepage-header-greeting {
+      margin-left: 15px;
+      color: #696969;
+    }
+
+    .MuiButtonBase-root-27 {
+      margin: 10px;
+    }
+  }
+
+  .homepage-content {
+    display: flex;
+    flex-direction: column;
+    margin: 2.5px 0;
+  }
 }

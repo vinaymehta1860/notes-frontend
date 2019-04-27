@@ -1,56 +1,52 @@
 import React from "react";
-//import Modal from '../modals/Modal';
-import "./heading.scss";
+import { connect } from "react-redux";
+
+import "./homePage.scss";
+import "../commons/forcedStyles.scss";
+
+import Button from "@material-ui/core/Button";
+
+import { toggleModalView } from "../../redux/actions/modalActions";
 
 class Heading extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      owner: this.props.owner,
-      newNote: false
-    };
-  }
-
-  // newNote = () => {
-  //   // Have the logic to create new note
-  //   console.log("This is from the new note button.");
-  //   //this.setState({newNote: true});
-  //   document.getElementsByClassName("modal")[0].style.display = "block";
-  //   document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
-  // }
+  createNewNote = () => {
+    this.props.toggleModalView(true, "newNote");
+  };
 
   render() {
-    // const modal = {
-    //   includeBottomBar: true
-    // }
+    const { owner } = this.props;
+    let text = "";
+    let button = null;
 
-    if (this.state.owner === true && !this.state.newNote) {
-      return (
-        <div className="heading">
-          <h3 className="title-bar">My Notes</h3>
-          <button className="new-note" onClick={this.props.onClick}>
-            Create New Note
-          </button>
-        </div>
+    if (owner) {
+      text = "My Notes";
+      button = (
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={this.createNewNote}
+        >
+          Create New Note
+        </Button>
       );
+    } else {
+      text = "Notes Shared with me";
     }
-    // else if(this.state.newNote) {
-    //   return (
-    //     <Modal title="New Note"
-    //       close={true} cancel={false} success={false} successButtonText="Create New Note" modal={modal}
-    //       style={{display: "block"}}
-    //     />
-    //   );
-    // }
-    else {
-      return (
-        <div className="heading">
-          <h3 className="title-bar">Shared Notes</h3>
-        </div>
-      );
-    }
+
+    return (
+      <div className="notes-heading">
+        <h2>{text}</h2>
+        <div className="forced-button">{button}</div>
+      </div>
+    );
   }
 }
 
-export default Heading;
+const mapDispatchToProps = {
+  toggleModalView
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Heading);

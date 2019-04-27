@@ -41,7 +41,7 @@ class Registration extends React.Component {
     } else if (pageView === "signup") {
       button = (
         <Button variant="contained" color="primary" onClick={this.changeView}>
-          Already have an accoun with us?
+          Already registered?
         </Button>
       );
     }
@@ -67,7 +67,7 @@ class Registration extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    signedIn: state.application.signedIn
+    signedIn: state.registration.signedIn
   };
 };
 

@@ -18,7 +18,7 @@ const initialState = {
   message: ""
 };
 
-const application = (state = initialState, action) => {
+const registration = (state = initialState, action) => {
   switch (action.type) {
     case CHANGE_VIEW:
       const { text } = action.payload;
@@ -122,4 +122,4 @@ const application = (state = initialState, action) => {
   }
 };
 
-export default application;
+export default registration;

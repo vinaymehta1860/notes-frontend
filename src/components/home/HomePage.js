@@ -1,16 +1,23 @@
+/*
+ *  Inside this component, there are two self defined components, OWNER & SHARED
+ *
+ *  Only import owner notes if the user has notes which he ownes. Pass the complete
+ *  owner object from API response to Owner component for it to render it on the home page.
+ *
+ *  Only import shared notes if the user has shared notes with him. Pass the complete
+ *  shared object from API response to Shared component for it to render it on the home page.
+ */
 import React from "react";
 import { connect } from "react-redux";
-// import crypto from "crypto";
 
 // Styles
 import "./homePage.scss";
+import "./notes.scss";
+import "../commons/forcedStyles.scss";
 
 // Components
-// import Modal from '../modals/NewNote';
-import Modal from "../modals/OldModal";
 import Owner from "./Owner";
 import Shared from "./Shared";
-// import Button from "../commons/Button";
 import Button from "@material-ui/core/Button";
 
 // Actions
@@ -19,6 +26,8 @@ import {
   sessionStorageUpdate,
   logoutUser
 } from "../../redux/actions";
+
+import { getAllNotes } from "../../redux/actions/notesActions";
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -31,6 +40,13 @@ class HomePage extends React.Component {
     this.toggleLoading();
   }
 
+  componentDidMount() {
+    // Get all the notes when this component mounts
+    const { username, sessionToken } = this.props;
+
+    this.props.getAllNotes(username, sessionToken);
+  }
+
   toggleLoading = () => {
     const {
       firstname,
@@ -40,13 +56,8 @@ class HomePage extends React.Component {
       username
     } = this.props;
 
-    // if (signedIn && sessionTokenStored === true) {
-    //   this.props.toggleLoading(false);
-    // }
-
     if (signedIn && sessionTokenStored === false) {
       // Directly store the sessionToken and username in localStorage without hashing.
-      //  More on security to be taken care in future.
       localStorage.setItem("firstname", firstname);
       localStorage.setItem("username", username);
       localStorage.setItem("sessionToken", sessionToken);
@@ -56,26 +67,9 @@ class HomePage extends React.Component {
     }
   };
 
-  /*createHash = valueToHash => {
-    const promise = new Promise((resolve, reject) => {
-      var hash = crypto
-        .createHmac("sha256", valueToHash)
-        .update(Date.now().toString())
-        .digest("hex");
-      resolve(hash);
-    });
-
-    return promise;
-  };*/
-
   handleLogout = () => {
     const { username, sessionToken } = this.props;
     this.props.logoutUser(username, sessionToken);
-  };
-
-  showNewNote = () => {
-    console.log("New note button clicked.");
-    this.setState({ newNote: true });
   };
 
   hideNewNote = () => {
@@ -84,48 +78,26 @@ class HomePage extends React.Component {
   };
 
   render() {
-    /*
-      Inside this fragment, have two self defined components, OWNER & SHARED
-      
-      Only import owner notes if the user has notes which he ownes. Pass the complete
-      owner object from API response to Owner component for it to render it on the home page.
-      
-      Only import shared notes if the user has shared notes with him. Pass the complete
-      shared object from API response to Shared component for it to render it on the home page.
-    */
-
-    const newNoteProps = {
-      title: "New Note",
-      close: true,
-      cancel: false,
-      success: false,
-      modal: {
-        type: "NewNote",
-        includeBottomBar: true,
-        hideNote: this.hideNewNote
-      }
-    };
-
-    const newNote = this.state.newNote;
-
     const { firstname } = this.props;
 
     return (
-      <div>
-        {firstname && <h1>Hi {firstname}..!!</h1>}
-        <Button
-          variant="contained"
-          color="secondary"
-          onClick={this.handleLogout}
-        >
-          Logout
-        </Button>
-
-        <Owner onClick={this.showNewNote} hideNote={this.hideNewNote} />
-
-        <Shared />
-
-        {newNote && <Modal {...newNoteProps} />}
+      <div className="homepage">
+        <div className="homepage-header">
+          <div className="homepage-header-greeting">
+            {firstname && <h1>Hi {firstname}..!!</h1>}
+          </div>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={this.handleLogout}
+          >
+            Logout
+          </Button>
+        </div>
+        <div className="homepage-content">
+          <Owner />
+          <Shared />
+        </div>
       </div>
     );
   }
@@ -133,19 +105,20 @@ class HomePage extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    firstname: state.application.firstname,
-    loading: state.application.loading,
-    signedIn: state.application.signedIn,
-    sessionToken: state.application.sessionToken,
-    sessionTokenStored: state.application.sessionTokenStored,
-    username: state.application.username
+    firstname: state.registration.firstname,
+    loading: state.registration.loading,
+    signedIn: state.registration.signedIn,
+    sessionToken: state.registration.sessionToken,
+    sessionTokenStored: state.registration.sessionTokenStored,
+    username: state.registration.username
   };
 };
 
 const mapDisptachToProps = {
   toggleLoading,
   sessionStorageUpdate,
-  logoutUser
+  logoutUser,
+  getAllNotes
 };
 
 export default connect(
