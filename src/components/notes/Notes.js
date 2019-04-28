@@ -10,7 +10,11 @@ class Notes extends React.Component {
   render() {
     return (
       <div className="note">
-        <TopBar unshare={this.props.unshare} owner={this.props.owner} />
+        <TopBar
+          unshare={this.props.unshare}
+          owner={this.props.owner}
+          note_id={this.props.note.note_id}
+        />
 
         <div className="note-data">
           <h3>{this.props.note.title}</h3>

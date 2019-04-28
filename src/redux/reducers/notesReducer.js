@@ -1,4 +1,10 @@
-import { GET_ALL_NOTES, CREATE_NEW_NOTE } from "../constants";
+import {
+  GET_ALL_NOTES,
+  CREATE_NEW_NOTE,
+  EDIT_NOTE,
+  SHARE_NOTE,
+  DELETE_NOTE
+} from "../constants";
 
 const initialState = {
   ownerNotes: [],
@@ -34,6 +40,28 @@ const notes = (state = initialState, action) => {
           ...state,
           ownerNotes: [...state.ownerNotes, ...note]
         };
+      } else {
+        return {
+          ...state
+        };
+      }
+    case EDIT_NOTE:
+      const success2 = action.payload.success;
+      const { editedNote } = action.payload;
+      let updatedNotes = [];
+
+      if (success2) {
+        // Go through the ownerNotes array, find the note that is edited and replace it's
+        //  contents (title & desc).
+        updatedNotes = state.ownerNotes.map(note => {
+          if (note.note_id === editedNote.note_id) {
+            return { ...note, title: editedNote.title, desc: editedNote.desc };
+          }
+
+          return note;
+        });
+
+        return { ...state, ownerNotes: updatedNotes };
       } else {
         return {
           ...state

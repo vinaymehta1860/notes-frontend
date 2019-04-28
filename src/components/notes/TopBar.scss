@@ -5,8 +5,27 @@
 .action-bar {
   display: block;
   margin: 10px;
-}
 
-.action-bar button {
-  margin: 0px 3px;
+  .top-bar-button {
+    width: 55px;
+    height: 25px;
+    margin: 0px 3px;
+    border-radius: 4px;
+    font-size: 12px;
+
+    &.button-edit {
+      background-color: blue;
+      color: white;
+    }
+
+    &.button-share {
+      background-color: #ff6347;
+      color: white;
+    }
+
+    &.button-delete {
+      background-color: red;
+      color: white;
+    }
+  }
 }

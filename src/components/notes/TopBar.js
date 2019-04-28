@@ -1,30 +1,28 @@
 import React from "react";
+import { connect } from "react-redux";
+
+import { toggleModalView } from "../../redux/actions/modalActions";
+
 import "./TopBar.scss";
 
 class TopBar extends React.Component {
-  // constructor(props) {
-  //   super(props);
-
-  //   this.state = {
-  //     canEdit: this.props.canEdit,
-  //     unshare: this.props.unshare
-  //   };
-  // }
-
   editNote = () => {
-    // Have the logic to edit a note
+    // Trigger the Edit modal
+    this.props.toggleModalView(true, "editNote", this.props.note_id);
   };
 
   shareNote = () => {
-    // Have the logic to share a note
+    // Trigger the Share modal
+    console.log("NoteId: " + this.props.note_id);
   };
 
   deleteNote = () => {
-    // Have the logic to delete a note
+    // Trigger the Delete modal
+    console.log("Delete");
   };
 
   unshareNote = () => {
-    // Have the logic to unshare a note
+    // Trigger the Unshare modal
   };
 
   render() {
@@ -33,16 +31,37 @@ class TopBar extends React.Component {
 
     if (owner) {
       editButton = (
-        <button className="edit" onClick={this.editNote}>
+        <button className="top-bar-button button-edit" onClick={this.editNote}>
           Edit
         </button>
       );
-      shareButton = <button onClick={this.shareNote}>Share</button>;
-      deleteButton = <button onClick={this.deleteNote}>Delete</button>;
+      shareButton = (
+        <button
+          className="top-bar-button button-share"
+          onClick={this.shareNote}
+        >
+          Share
+        </button>
+      );
+      deleteButton = (
+        <button
+          className="top-bar-button button-delete"
+          onClick={this.deleteNote}
+        >
+          Delete
+        </button>
+      );
     }
 
     if (unshare) {
-      unshareButton = <button onClick={this.unshareNote}>Unshare</button>;
+      unshareButton = (
+        <button
+          className="top-bar-button button-unshare"
+          onClick={this.unshareNote}
+        >
+          Unshare
+        </button>
+      );
     }
 
     return (
@@ -56,4 +75,11 @@ class TopBar extends React.Component {
   }
 }
 
-export default TopBar;
+const mapDispatchToProps = {
+  toggleModalView
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(TopBar);

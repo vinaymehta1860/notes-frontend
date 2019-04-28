@@ -12,6 +12,9 @@ export const TOGGLE_SESSIONSTORED = "TOGGLE_SESSIONSTORED";
 // Actions for notes
 export const GET_ALL_NOTES = "GET_ALL_NOTES";
 export const CREATE_NEW_NOTE = "CREATE_NEW_NOTE";
+export const EDIT_NOTE = "EDIT_NOTE";
+export const SHARE_NOTE = "SHARE_NOTE";
+export const DELETE_NOTE = "DELETE_NOTE";
 
 // Actions for modal view
 export const TOGGLE_MODAL_VIEW = "TOGGLE_MODAL_VIEW";
