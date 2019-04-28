@@ -14,8 +14,8 @@ class EditNote extends React.Component {
     super(props);
 
     this.state = {
-      _noteTitle: "",
-      _noteBody: ""
+      _noteTitle: this.props.title,
+      _noteBody: this.props.desc
     };
   }
 
@@ -92,6 +92,8 @@ class EditNote extends React.Component {
 const mapStateToProps = state => {
   return {
     note_id: state.modal.note_id,
+    title: state.modal.title,
+    desc: state.modal.desc,
     sessionToken: state.registration.sessionToken,
     username: state.registration.username
   };

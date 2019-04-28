@@ -13,7 +13,7 @@ class Notes extends React.Component {
         <TopBar
           unshare={this.props.unshare}
           owner={this.props.owner}
-          note_id={this.props.note.note_id}
+          note={this.props.note}
         />
 
         <div className="note-data">

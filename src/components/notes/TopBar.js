@@ -8,7 +8,9 @@ import "./TopBar.scss";
 class TopBar extends React.Component {
   editNote = () => {
     // Trigger the Edit modal
-    this.props.toggleModalView(true, "editNote", this.props.note_id);
+    const { note_id, title, desc } = this.props.note;
+
+    this.props.toggleModalView(true, "editNote", note_id, title, desc);
   };
 
   shareNote = () => {
