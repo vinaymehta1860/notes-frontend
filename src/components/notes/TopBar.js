@@ -20,7 +20,9 @@ class TopBar extends React.Component {
 
   deleteNote = () => {
     // Trigger the Delete modal
-    console.log("Delete");
+    const { note_id } = this.props.note;
+
+    this.props.toggleModalView(true, "deleteNote", note_id);
   };
 
   unshareNote = () => {

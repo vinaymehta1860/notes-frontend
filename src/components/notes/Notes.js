@@ -8,16 +8,21 @@ import "./notes.scss";
 
 class Notes extends React.Component {
   render() {
+    const { owner } = this.props;
+
     return (
       <div className="note">
-        <TopBar
-          unshare={this.props.unshare}
-          owner={this.props.owner}
-          note={this.props.note}
-        />
-
+        {owner && (
+          <TopBar
+            unshare={this.props.unshare}
+            owner={owner}
+            note={this.props.note}
+          />
+        )}
+        <div className="note-title">
+          <p>{this.props.note.title}</p>
+        </div>
         <div className="note-data">
-          <h3>{this.props.note.title}</h3>
           <p>{this.props.note.desc}</p>
         </div>
       </div>

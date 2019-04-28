@@ -5,11 +5,11 @@
   .homepage-header {
     display: flex;
     flex-direction: row;
+    height: 65px;
     margin-bottom: 2.5px;
-    padding: 0px 10px;
     justify-content: space-between;
     background-color: #fffaf0;
-    border: 1px solid #fafad2;
+    border: 1px solid lightgray;
     border-radius: 15px;
 
     .homepage-header-greeting {

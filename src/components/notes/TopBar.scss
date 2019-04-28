@@ -3,8 +3,12 @@
 } */
 
 .action-bar {
-  display: block;
-  margin: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 100%;
+  padding: 8px 0;
+  background-color: bisque;
 
   .top-bar-button {
     width: 55px;

@@ -106,3 +106,32 @@ export const editNote = (username, sessionToken, noteObject) => dispatch => {
       });
     });
 };
+
+export const deleteNote = (username, sessionToken, note_id) => dispatch => {
+  return axios({
+    method: "post",
+    url: "http://localhost:4000/notes/delete",
+    data: {
+      username,
+      sessionToken,
+      note_id
+    }
+  })
+    .then(resp => {
+      dispatch({
+        type: DELETE_NOTE,
+        payload: {
+          success: resp.data.success,
+          note_id: resp.data.payload.note_id
+        }
+      });
+    })
+    .catch(error => {
+      dispatch({
+        type: ERROR_STATE,
+        payload: {
+          error
+        }
+      });
+    });
+};

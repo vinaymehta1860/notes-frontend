@@ -10,6 +10,7 @@ import Header from "./Header";
 // Modal Contents
 import NewNote from "./modals/newNote/NewNote";
 import EditNote from "./modals/editNote/EditNote";
+import DeleteNote from "./modals/deleteNote/DeleteNote";
 
 class Modal extends React.Component {
   constructor(props) {
@@ -27,6 +28,10 @@ class Modal extends React.Component {
       editNote: {
         header: { title: "Edit Note", showClose: true },
         content: EditNote
+      },
+      deleteNote: {
+        header: { title: "Delete Note", showClose: false },
+        content: DeleteNote
       }
     };
 

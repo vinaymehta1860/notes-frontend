@@ -67,6 +67,30 @@ const notes = (state = initialState, action) => {
           ...state
         };
       }
+    case DELETE_NOTE:
+      const success3 = action.payload.success;
+      const noteIdToDelete = action.payload.note_id;
+      let updatedOwnerNotes = state.ownerNotes;
+
+      if (success3) {
+        // Find the index of the note that you want to delete
+        const noteToDelete = updatedOwnerNotes.findIndex(note => {
+          if (note.note_id === noteIdToDelete) {
+            return true;
+          }
+        });
+
+        updatedOwnerNotes.splice(noteToDelete, 1);
+
+        return {
+          ...state,
+          ownerNotes: [...updatedOwnerNotes]
+        };
+      } else {
+        return {
+          ...state
+        };
+      }
     default:
       return state;
   }

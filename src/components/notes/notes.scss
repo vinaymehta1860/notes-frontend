@@ -1,9 +1,20 @@
 .note {
   display: inline-block;
-  margin: 5px;
+  margin: 10px;
   border: 2px solid green;
   width: 250px;
   height: 275px;
+}
+
+.note-title {
+  border-bottom: 0.5px solid lightgray;
+
+  p {
+    font-weight: bold;
+    font-size: 18px;
+    margin: 0;
+    padding: 15px;
+  }
 }
 
 .note-data {
