@@ -1,33 +1,31 @@
+/*
+ *  Notes will be passed to this component from Owner & Shared components in the home module.
+ */
+
 import React from "react";
-import TopBar from "./TopBar";
+import { connect } from "react-redux";
+
 import "./notes.scss";
 
+import TopBar from "./TopBar";
+
 class Notes extends React.Component {
-  /*
-    Notes will be passed to this component from Owner & Shared components in the home module.
-  */
-
-  // constructor(props) {
-  //   super(props);
-
-  //   this.props = {
-  //     notes: {
-  //       title: "Test Title",
-  //       desc: "Test description.!"
-  //     }
-  //   }
-  // }
-
   render() {
+    const { owner, note } = this.props;
+
     return (
       <div className="note">
-        <TopBar
-          canEdit={this.props.note.canEdit}
-          unshare={this.props.unshare}
-        />
-
+        {owner && (
+          <TopBar
+            owner={owner}
+            note={note}
+            shared={note.sharedWith.length > 0}
+          />
+        )}
+        <div className="note-title">
+          <p>{this.props.note.title}</p>
+        </div>
         <div className="note-data">
-          <h3>{this.props.note.title}</h3>
           <p>{this.props.note.desc}</p>
         </div>
       </div>
@@ -35,4 +33,7 @@ class Notes extends React.Component {
   }
 }
 
-export default Notes;
+export default connect(
+  null,
+  {}
+)(Notes);

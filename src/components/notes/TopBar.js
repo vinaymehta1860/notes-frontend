@@ -1,49 +1,84 @@
 import React from "react";
+import { connect } from "react-redux";
+
+import { toggleModalView } from "../../redux/actions/modalActions";
+
 import "./TopBar.scss";
 
 class TopBar extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      canEdit: this.props.canEdit,
-      unshare: this.props.unshare
-    };
-  }
-
   editNote = () => {
-    // Have the logic to edit a note
+    const { note_id, title, desc } = this.props.note;
+
+    this.props.toggleModalView(
+      { showModal: true, modalView: "editNote", viewSize: "big" },
+      { note_id, title, desc }
+    );
   };
 
   shareNote = () => {
-    // Have the logic to share a note
+    const { note_id, sharedWith } = this.props.note;
+
+    this.props.toggleModalView(
+      { showModal: true, modalView: "shareNote", viewSize: "big" },
+      { note_id, sharedWith }
+    );
   };
 
   deleteNote = () => {
-    // Have the logic to delete a note
+    const { note_id } = this.props.note;
+
+    this.props.toggleModalView(
+      { showModal: true, modalView: "deleteNote", viewSize: "small" },
+      { note_id }
+    );
   };
 
   unshareNote = () => {
-    // Have the logic to unshare a note
+    const { note_id } = this.props.note;
+
+    this.props.toggleModalView(
+      { showModal: true, modalView: "unshareNote", viewSize: "small" },
+      { note_id }
+    );
   };
 
   render() {
-    const canEdit = this.state.canEdit,
-      unshare = this.state.unshare;
+    const { owner, shared } = this.props;
     let editButton, shareButton, deleteButton, unshareButton;
 
-    if (canEdit) {
+    if (owner) {
       editButton = (
-        <button className="edit" onClick={this.editNote}>
+        <button className="top-bar-button button-edit" onClick={this.editNote}>
           Edit
         </button>
       );
-      shareButton = <button onClick={this.shareNote}>Share</button>;
-      deleteButton = <button onClick={this.deleteNote}>Delete</button>;
+      shareButton = (
+        <button
+          className="top-bar-button button-share"
+          onClick={this.shareNote}
+        >
+          Share
+        </button>
+      );
+      deleteButton = (
+        <button
+          className="top-bar-button button-delete"
+          onClick={this.deleteNote}
+        >
+          Delete
+        </button>
+      );
     }
 
-    if (unshare) {
-      unshareButton = <button onClick={this.unshareNote}>Unshare</button>;
+    if (owner && shared) {
+      unshareButton = (
+        <button
+          className="top-bar-button button-unshare"
+          onClick={this.unshareNote}
+        >
+          Unshare
+        </button>
+      );
     }
 
     return (
@@ -57,4 +92,11 @@ class TopBar extends React.Component {
   }
 }
 
-export default TopBar;
+const mapDispatchToProps = {
+  toggleModalView
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(TopBar);

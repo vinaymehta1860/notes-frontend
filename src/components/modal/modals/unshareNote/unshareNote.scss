@@ -1,0 +1,26 @@
+.delete-note-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+
+  .delete-note-body-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 80px;
+
+    p {
+      text-align: center;
+      font-weight: bold;
+    }
+  }
+
+  .delete-note-body-footer {
+    display: flex;
+    flex-direction: row;
+    height: 40px;
+    justify-content: space-evenly;
+    padding: 15px;
+    border-top: 1px solid lightgrey;
+  }
+}

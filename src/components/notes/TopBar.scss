@@ -3,10 +3,39 @@
 } */
 
 .action-bar {
-  display: block;
-  margin: 10px;
-}
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 100%;
+  padding: 8px 0;
+  background-color: bisque;
 
-.action-bar button {
-  margin: 0px 3px;
+  .top-bar-button {
+    width: 70px;
+    height: 25px;
+    margin: 0px 3px;
+    border-radius: 12px;
+    font-size: 12px;
+    background-color: #29b6f6;
+
+    &.button-edit {
+      color: white;
+    }
+
+    &.button-share {
+      color: white;
+    }
+
+    &.button-delete {
+      color: white;
+    }
+
+    &.button-unshare {
+      color: white;
+    }
+  }
+
+  button:focus {
+    outline: none;
+  }
 }

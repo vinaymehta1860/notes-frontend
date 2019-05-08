@@ -1,0 +1,29 @@
+.notes-heading {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+  padding: 5px 10px;
+  background-color: #d7edf7;
+  color: #424242;
+  font-size: 25px;
+}
+
+.notes-owner {
+  .notes-owner-content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 5px 15px;
+  }
+}
+
+.notes-shared {
+  .notes-shared-content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 5px 15px;
+  }
+}
