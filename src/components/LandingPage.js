@@ -7,6 +7,7 @@ import "./landingPage.scss";
 // Components
 import Registration from "./registration/Registration";
 import HomePage from "./home/HomePage";
+import Modal from "./modal/Modal";
 
 // Actions
 import {
@@ -37,10 +38,11 @@ class LandingPage extends React.Component {
   }
 
   render() {
-    const { signedIn } = this.props;
+    const { signedIn, showModal } = this.props;
 
     return (
       <div className="landing">
+        {showModal && <Modal />}
         {!signedIn && <Registration />}
         {signedIn && <HomePage />}
       </div>
@@ -50,7 +52,8 @@ class LandingPage extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    signedIn: state.application.signedIn
+    showModal: state.modal.config.showModal,
+    signedIn: state.registration.signedIn
   };
 };
 

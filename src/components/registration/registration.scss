@@ -3,10 +3,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #fffafa;
-  margin: auto;
+  width: 800px;
+  margin: 50px auto;
   padding: 25px;
   text-align: center;
+  background-color: #fffafa;
   box-shadow: 3px 3px 3px 3px #e0e0e0;
 
   .registration-content {
@@ -53,8 +54,7 @@
     text-indent: 5px;
     width: 250px;
     height: 25px;
-    border-style: solid;
-    border-color: #616161;
+    border: 1px solid #616161;
     border-radius: 6px;
   }
 
@@ -62,8 +62,7 @@
     text-indent: 5px;
     width: 250px;
     height: 25px;
-    border-style: solid;
-    border-color: #616161;
+    border: 1px solid #616161;
     border-radius: 6px;
   }
 

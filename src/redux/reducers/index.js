@@ -1,7 +1,12 @@
 import { combineReducers } from "redux";
 
-import applicationReducer from "./applicationReducer";
+// Reducers
+import modalReducer from "./modalReducer";
+import notesReducer from "./notesReducer";
+import registrationReducer from "./registrationReducer";
 
 export default combineReducers({
-  application: applicationReducer
+  modal: modalReducer,
+  notes: notesReducer,
+  registration: registrationReducer
 });
