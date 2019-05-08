@@ -1,24 +1,45 @@
-import { TOGGLE_MODAL_VIEW } from "../constants";
+import {
+  TOGGLE_MODAL_VIEW,
+  ADD_RECIPIENT,
+  CLEAR_RECIPIENTS
+} from "../constants";
 
 const initialState = {
-  showModal: false,
-  modalView: "",
-  title: "",
-  desc: "",
-  note_id: null
+  config: {
+    showModal: false,
+    modalView: "",
+    viewSize: "big"
+  },
+  data: {
+    title: "",
+    desc: "",
+    note_id: "",
+    sharedWith: []
+  },
+  recipients: []
 };
 
 const modal = (state = initialState, action) => {
   switch (action.type) {
     case TOGGLE_MODAL_VIEW:
-      const { modalView, showModal, note_id, title, desc } = action.payload;
+      const { config, data } = action.payload;
       return {
         ...state,
-        modalView,
-        showModal,
-        note_id,
-        title,
-        desc
+        config,
+        data
+      };
+    case ADD_RECIPIENT:
+      const { recipient } = action.payload;
+      let newRecipients = state.recipients;
+      newRecipients.push(recipient);
+      return {
+        ...state,
+        recipients: [...newRecipients]
+      };
+    case CLEAR_RECIPIENTS:
+      return {
+        ...state,
+        recipients: []
       };
     default:
       return state;

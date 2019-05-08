@@ -38,10 +38,11 @@ class LandingPage extends React.Component {
   }
 
   render() {
-    const { signedIn } = this.props;
+    const { signedIn, showModal } = this.props;
 
     return (
       <div className="landing">
+        {showModal && <Modal />}
         {!signedIn && <Registration />}
         {signedIn && <HomePage />}
       </div>
@@ -51,6 +52,7 @@ class LandingPage extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    showModal: state.modal.config.showModal,
     signedIn: state.registration.signedIn
   };
 };

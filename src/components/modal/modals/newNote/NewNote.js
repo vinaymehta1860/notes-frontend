@@ -61,7 +61,7 @@ class NewNote extends React.Component {
             />
           </div>
           <div className="newNote-content-body">
-            <p>Note Body</p>
+            <span>Note Body:</span>
             <ContentEditable
               className="newNote-content-body-editable"
               content={this.state._noteBody}

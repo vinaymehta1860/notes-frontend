@@ -3,12 +3,17 @@ import {
   CREATE_NEW_NOTE,
   EDIT_NOTE,
   SHARE_NOTE,
+  UNSHARE_NOTE,
   DELETE_NOTE
 } from "../constants";
 
 const initialState = {
   ownerNotes: [],
-  sharedNotes: []
+  sharedNotes: [],
+  flags: {
+    noteShared: false,
+    noteUnshared: false
+  }
 };
 
 const notes = (state = initialState, action) => {
@@ -89,6 +94,51 @@ const notes = (state = initialState, action) => {
       } else {
         return {
           ...state
+        };
+      }
+    case SHARE_NOTE:
+      const success4 = action.payload.success;
+      if (success4) {
+        // Find the note that is shared from ownerNotes array and update the sharedWith array
+        var newNotes = state.ownerNotes.map(note => {
+          if (note.note_id === action.payload.note_id) {
+            note.sharedWith.push(action.payload.sharedWith);
+            return note;
+          }
+
+          return note;
+        });
+
+        return {
+          ...state,
+          flags: {
+            noteShared: action.payload.noteShared
+          },
+          ownerNotes: newNotes
+        };
+      } else {
+        return {
+          ...state
+        };
+      }
+    case UNSHARE_NOTE:
+      const success5 = action.payload.success;
+
+      if (success5) {
+        var newNotes = state.ownerNotes.map(note => {
+          if (note.note_id === action.payload.note_id) {
+            note.sharedWith = [];
+            return note;
+          }
+          return note;
+        });
+
+        return {
+          ...state,
+          ownerNotes: newNotes,
+          flags: {
+            noteUnshared: true
+          }
         };
       }
     default:

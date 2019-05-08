@@ -19,7 +19,7 @@ class Owner extends React.Component {
         </div>
         <div className="notes-owner-content">
           {ownerNotes.map(note => (
-            <Notes note={note} unshare={false} owner={true} key={note.note_id}>
+            <Notes note={note} owner={true} key={note.note_id}>
               {note.title}>
             </Notes>
           ))}

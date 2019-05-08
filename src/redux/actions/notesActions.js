@@ -4,6 +4,7 @@ import {
   CREATE_NEW_NOTE,
   EDIT_NOTE,
   SHARE_NOTE,
+  UNSHARE_NOTE,
   DELETE_NOTE,
   ERROR_STATE
 } from "../constants";
@@ -122,6 +123,76 @@ export const deleteNote = (username, sessionToken, note_id) => dispatch => {
         type: DELETE_NOTE,
         payload: {
           success: resp.data.success,
+          note_id: resp.data.payload.note_id
+        }
+      });
+    })
+    .catch(error => {
+      dispatch({
+        type: ERROR_STATE,
+        payload: {
+          error
+        }
+      });
+    });
+};
+
+export const shareNote = (
+  username,
+  sessionToken,
+  note_id,
+  emails,
+  canEdit = false
+) => dispatch => {
+  return axios({
+    method: "post",
+    url: "http://localhost:4000/notes/share",
+    data: {
+      username,
+      sessionToken,
+      note_id,
+      emails,
+      canEdit
+    }
+  })
+    .then(resp => {
+      dispatch({
+        type: SHARE_NOTE,
+        payload: {
+          success: resp.data.success,
+          message: resp.data.message,
+          note_id: resp.data.payload.note_id,
+          sharedWith: resp.data.payload.sharedWith,
+          noteShared: true
+        }
+      });
+    })
+    .catch(error => {
+      dispatch({
+        type: ERROR_STATE,
+        payload: {
+          error
+        }
+      });
+    });
+};
+
+export const unshareNote = (username, sessionToken, note_id) => dispatch => {
+  return axios({
+    method: "post",
+    url: "http://localhost:4000/notes/unshare",
+    data: {
+      username,
+      sessionToken,
+      note_id
+    }
+  })
+    .then(resp => {
+      dispatch({
+        type: UNSHARE_NOTE,
+        payload: {
+          success: resp.data.success,
+          message: resp.data.message,
           note_id: resp.data.payload.note_id
         }
       });

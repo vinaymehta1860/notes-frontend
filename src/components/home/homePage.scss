@@ -6,19 +6,21 @@
     display: flex;
     flex-direction: row;
     height: 65px;
-    margin-bottom: 2.5px;
     justify-content: space-between;
-    background-color: #fffaf0;
+    background-color: #fdf4e5;
     border: 1px solid lightgray;
-    border-radius: 15px;
 
     .homepage-header-greeting {
-      margin-left: 15px;
-      color: #696969;
+      color: #616161;
+
+      p {
+        margin: 14px 0 12px 8px;
+        font-size: 30px;
+      }
     }
 
     .MuiButtonBase-root-27 {
-      margin: 10px;
+      margin: 10px 14px 10px 0px;
     }
   }
 

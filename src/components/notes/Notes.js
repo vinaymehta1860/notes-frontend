@@ -3,20 +3,23 @@
  */
 
 import React from "react";
-import TopBar from "./TopBar";
+import { connect } from "react-redux";
+
 import "./notes.scss";
+
+import TopBar from "./TopBar";
 
 class Notes extends React.Component {
   render() {
-    const { owner } = this.props;
+    const { owner, note } = this.props;
 
     return (
       <div className="note">
         {owner && (
           <TopBar
-            unshare={this.props.unshare}
             owner={owner}
-            note={this.props.note}
+            note={note}
+            shared={note.sharedWith.length > 0}
           />
         )}
         <div className="note-title">
@@ -30,4 +33,7 @@ class Notes extends React.Component {
   }
 }
 
-export default Notes;
+export default connect(
+  null,
+  {}
+)(Notes);

@@ -2,32 +2,37 @@ import React from "react";
 import { connect } from "react-redux";
 import Button from "@material-ui/core/Button";
 
-import "./deleteNote.scss";
+import "./unshareNote.scss";
 
-import { deleteNote } from "../../../../redux/actions/notesActions";
+import { unshareNote } from "../../../../redux/actions/notesActions";
 import { toggleModalView } from "../../../../redux/actions/modalActions";
 
-class DeleteNote extends React.Component {
+class UnshareNote extends React.Component {
+  componentDidUpdate() {
+    const { noteUnshared, toggleModalView } = this.props;
+
+    if (noteUnshared) {
+      toggleModalView({ showModal: false, modalView: "" });
+    }
+  }
+
   onCancel = () => {
     // Remove the modal from view
     this.props.toggleModalView({ showModal: false, modalView: "" });
   };
 
-  onDelete = () => {
-    // Delete the note
-    const { note_id, username, sessionToken } = this.props;
+  onUnshare = () => {
+    // Unshare the note
+    const { note_id, username, sessionToken, unshareNote } = this.props;
 
-    this.props.deleteNote(username, sessionToken, note_id);
-
-    // Take down the modal as well
-    this.props.toggleModalView({ showModal: false, modalView: "" });
+    unshareNote(username, sessionToken, note_id);
   };
 
   render() {
     return (
       <div className="delete-note-body">
         <div className="delete-note-body-content">
-          <p>Are you sure you want to delete this note?</p>
+          <p>Are you sure you want to unshare this note?</p>
         </div>
         <div className="delete-note-body-footer">
           <Button
@@ -41,9 +46,9 @@ class DeleteNote extends React.Component {
             variant="contained"
             color="secondary"
             className="OutlinedButtons-button-193"
-            onClick={this.onDelete}
+            onClick={this.onUnshare}
           >
-            Delete
+            Unshare
           </Button>
         </div>
       </div>
@@ -54,17 +59,18 @@ class DeleteNote extends React.Component {
 const mapStateToProps = state => {
   return {
     note_id: state.modal.data.note_id,
+    noteUnshared: state.notes.flags.noteUnshared,
     username: state.registration.username,
     sessionToken: state.registration.sessionToken
   };
 };
 
 const mapDispatchToProps = {
-  deleteNote,
+  unshareNote,
   toggleModalView
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(DeleteNote);
+)(UnshareNote);

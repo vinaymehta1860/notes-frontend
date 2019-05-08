@@ -7,30 +7,43 @@ import "./TopBar.scss";
 
 class TopBar extends React.Component {
   editNote = () => {
-    // Trigger the Edit modal
     const { note_id, title, desc } = this.props.note;
 
-    this.props.toggleModalView(true, "editNote", note_id, title, desc);
+    this.props.toggleModalView(
+      { showModal: true, modalView: "editNote", viewSize: "big" },
+      { note_id, title, desc }
+    );
   };
 
   shareNote = () => {
-    // Trigger the Share modal
-    console.log("NoteId: " + this.props.note_id);
+    const { note_id, sharedWith } = this.props.note;
+
+    this.props.toggleModalView(
+      { showModal: true, modalView: "shareNote", viewSize: "big" },
+      { note_id, sharedWith }
+    );
   };
 
   deleteNote = () => {
-    // Trigger the Delete modal
     const { note_id } = this.props.note;
 
-    this.props.toggleModalView(true, "deleteNote", note_id);
+    this.props.toggleModalView(
+      { showModal: true, modalView: "deleteNote", viewSize: "small" },
+      { note_id }
+    );
   };
 
   unshareNote = () => {
-    // Trigger the Unshare modal
+    const { note_id } = this.props.note;
+
+    this.props.toggleModalView(
+      { showModal: true, modalView: "unshareNote", viewSize: "small" },
+      { note_id }
+    );
   };
 
   render() {
-    const { owner, unshare } = this.props;
+    const { owner, shared } = this.props;
     let editButton, shareButton, deleteButton, unshareButton;
 
     if (owner) {
@@ -57,7 +70,7 @@ class TopBar extends React.Component {
       );
     }
 
-    if (unshare) {
+    if (owner && shared) {
       unshareButton = (
         <button
           className="top-bar-button button-unshare"

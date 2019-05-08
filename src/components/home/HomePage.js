@@ -84,7 +84,7 @@ class HomePage extends React.Component {
       <div className="homepage">
         <div className="homepage-header">
           <div className="homepage-header-greeting">
-            {firstname && <h1>Hi {firstname}..!!</h1>}
+            {firstname && <p>Hi {firstname}..!!</p>}
           </div>
           <Button
             variant="contained"

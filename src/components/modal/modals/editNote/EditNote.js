@@ -49,9 +49,9 @@ class EditNote extends React.Component {
     }
 
     return (
-      <div className="newNote-body">
-        <div className="newNote-content">
-          <div className="newNote-content-title">
+      <div className="editNote-body">
+        <div className="editNote-content">
+          <div className="editNote-content-title">
             <span>Title: </span>
             <input
               type="text"
@@ -61,10 +61,10 @@ class EditNote extends React.Component {
               autoFocus
             />
           </div>
-          <div className="newNote-content-body">
-            <p>Note Body</p>
+          <div className="editNote-content-body">
+            <span>Note Body:</span>
             <ContentEditable
-              className="newNote-content-body-editable"
+              className="editNote-content-body-editable"
               content={this.state._noteBody}
               data-placeholder="Enter note contents here"
               editable={true}
@@ -74,7 +74,7 @@ class EditNote extends React.Component {
             />
           </div>
         </div>
-        <div className="newNote-footer">
+        <div className="editNote-footer">
           <Button
             variant="contained"
             color="primary"
@@ -91,9 +91,9 @@ class EditNote extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    note_id: state.modal.note_id,
-    title: state.modal.title,
-    desc: state.modal.desc,
+    note_id: state.modal.data.note_id,
+    title: state.modal.data.title,
+    desc: state.modal.data.desc,
     sessionToken: state.registration.sessionToken,
     username: state.registration.username
   };

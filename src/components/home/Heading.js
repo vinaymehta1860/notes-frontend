@@ -10,7 +10,11 @@ import { toggleModalView } from "../../redux/actions/modalActions";
 
 class Heading extends React.Component {
   createNewNote = () => {
-    this.props.toggleModalView(true, "newNote");
+    this.props.toggleModalView({
+      showModal: true,
+      modalView: "newNote",
+      viewSize: "big"
+    });
   };
 
   render() {
@@ -35,7 +39,7 @@ class Heading extends React.Component {
 
     return (
       <div className="notes-heading">
-        <h2>{text}</h2>
+        <p>{text}</p>
         <div className="forced-button">{button}</div>
       </div>
     );

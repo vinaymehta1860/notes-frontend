@@ -1,7 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { toggleModalView } from "../../redux/actions/modalActions";
+import {
+  toggleModalView,
+  clearRecipients
+} from "../../redux/actions/modalActions";
 
 import "./modal.scss";
 
@@ -10,7 +13,10 @@ import Button from "@material-ui/core/Button";
 
 class Header extends React.Component {
   onClick = () => {
-    this.props.toggleModalView(false, "");
+    this.props.toggleModalView(false, "", {});
+    // TODO: Move the recipients list to modalReducer and have one function to clear
+    //  all the modal state variable values
+    this.props.clearRecipients();
   };
 
   render() {
@@ -39,7 +45,8 @@ class Header extends React.Component {
 }
 
 const mapDispatchToProps = {
-  toggleModalView
+  toggleModalView,
+  clearRecipients
 };
 
 export default connect(

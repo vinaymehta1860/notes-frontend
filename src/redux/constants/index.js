@@ -14,7 +14,10 @@ export const GET_ALL_NOTES = "GET_ALL_NOTES";
 export const CREATE_NEW_NOTE = "CREATE_NEW_NOTE";
 export const EDIT_NOTE = "EDIT_NOTE";
 export const SHARE_NOTE = "SHARE_NOTE";
+export const UNSHARE_NOTE = "UNSHARE_NOTE";
 export const DELETE_NOTE = "DELETE_NOTE";
+export const ADD_RECIPIENT = "ADD_RECIPIENT";
+export const CLEAR_RECIPIENTS = "CLEAR_RECIPIENTS";
 
 // Actions for modal view
 export const TOGGLE_MODAL_VIEW = "TOGGLE_MODAL_VIEW";

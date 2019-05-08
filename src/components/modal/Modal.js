@@ -1,16 +1,15 @@
 import React from "react";
-import ReactModal from "react-modal";
 import { connect } from "react-redux";
 
 import "./modal.scss";
 
-// Modal Header
+// Modal Components
 import Header from "./Header";
-
-// Modal Contents
 import NewNote from "./modals/newNote/NewNote";
 import EditNote from "./modals/editNote/EditNote";
 import DeleteNote from "./modals/deleteNote/DeleteNote";
+import ShareNote from "./modals/shareNote/ShareNote";
+import UnshareNote from "./modals/unshareNote/UnshareNote";
 
 class Modal extends React.Component {
   constructor(props) {
@@ -32,6 +31,14 @@ class Modal extends React.Component {
       deleteNote: {
         header: { title: "Delete Note", showClose: false },
         content: DeleteNote
+      },
+      shareNote: {
+        header: { title: "Share Note", showClose: true },
+        content: ShareNote
+      },
+      unshareNote: {
+        header: { title: "Unshare Note", showClose: false },
+        content: UnshareNote
       }
     };
 
@@ -39,35 +46,38 @@ class Modal extends React.Component {
   };
 
   renderHeader = () => {
-    const viewProps = this.propsMap[this.props.modalView].header;
-
+    const viewProps = this.propsMap[this.props.config.modalView].header;
     return <Header {...viewProps} />;
   };
 
   renderContent = () => {
-    const Component = this.propsMap[this.props.modalView].content;
+    const Component = this.propsMap[this.props.config.modalView].content;
 
     return <Component />;
   };
 
+  buildClassList = () => {
+    let classes = [];
+    const { viewSize } = this.props.config;
+
+    if (viewSize === "big") {
+      classes.push("modalsize-big");
+    } else if (viewSize === "small") {
+      classes.push("modalsize-small");
+    }
+
+    return classes.join(" ");
+  };
+
   render() {
-    const { showModal } = this.props;
+    const { showModal } = this.props.config;
     return (
-      <div>
+      <div className="inhouse-modal">
         {showModal && (
-          <ReactModal
-            isOpen={this.props.showModal}
-            contentLabel="Modal #1 Global Style Override Example"
-            onRequestClose={this.handleCloseModal}
-            ariaHideApp={false}
-          >
-            <div className="notes-modal">
-              <div className="notes-modal-content">
-                {this.renderHeader()}
-                {this.renderContent()}
-              </div>
-            </div>
-          </ReactModal>
+          <div className={`inhouse-modal-content ${this.buildClassList()}`}>
+            {this.renderHeader()}
+            {this.renderContent()}
+          </div>
         )}
       </div>
     );
@@ -76,8 +86,7 @@ class Modal extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    modalView: state.modal.modalView,
-    showModal: state.modal.showModal
+    config: state.modal.config
   };
 };
 

@@ -1,13 +1,17 @@
 .note {
   display: inline-block;
-  margin: 10px;
-  border: 2px solid green;
-  width: 250px;
-  height: 275px;
+  margin: 5px;
+  border: 2px solid #d7edf7;
+  border-radius: 5px;
+  width: 320px;
+  height: auto;
+  max-height: 400px;
 }
 
 .note-title {
   border-bottom: 0.5px solid lightgray;
+  height: auto;
+  max-height: 75px;
 
   p {
     font-weight: bold;
@@ -18,5 +22,12 @@
 }
 
 .note-data {
-  margin: 5px;
+  text-align: justify;
+  overflow: scroll;
+  height: auto;
+  max-height: 285px;
+
+  p {
+    padding: 10px;
+  }
 }
