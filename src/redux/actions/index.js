@@ -38,12 +38,12 @@ export const sessionStorageUpdate = sessionStoreValue => {
 };
 
 // Action to signin user
-export const registerSignIn = (username, password) => dispatch => {
+export const registerSignIn = (email, password) => dispatch => {
   return axios({
     method: "post",
     url: "http://localhost:4000/registration/signin",
     data: {
-      username,
+      email,
       password
     }
   })
@@ -51,11 +51,11 @@ export const registerSignIn = (username, password) => dispatch => {
       dispatch({
         type: REGISTER_SIGNIN,
         payload: {
-          firstname: resp.data.payload.firstname,
-          message: resp.data.message,
           success: resp.data.success,
-          sessionToken: resp.data.payload.sessionToken,
-          username: resp.data.payload.username
+          message: resp.data.message,
+          firstname: resp.data.payload.firstname,
+          email: resp.data.payload.email,
+          sessionToken: resp.data.payload.sessionToken
         }
       });
     })
@@ -73,7 +73,6 @@ export const registerSignIn = (username, password) => dispatch => {
 export const registerSignUp = (
   firstname,
   lastname,
-  username,
   email,
   password
 ) => dispatch => {
@@ -83,7 +82,6 @@ export const registerSignUp = (
     data: {
       firstname,
       lastname,
-      username,
       email,
       password
     }
@@ -92,11 +90,11 @@ export const registerSignUp = (
       dispatch({
         type: REGISTER_SIGNUP,
         payload: {
-          firstname: resp.data.payload.firstname,
-          message: resp.data.message,
           success: resp.data.success,
-          sessionToken: resp.data.payload.sessionToken,
-          username: resp.data.payload.username
+          message: resp.data.message,
+          firstname: resp.data.payload.firstname,
+          email: resp.data.payload.email,
+          sessionToken: resp.data.payload.sessionToken
         }
       });
     })
@@ -111,12 +109,11 @@ export const registerSignUp = (
 };
 
 // Action to check the localStorage values, verify and sign in user
-export const verifyUser = (firstname, username, sessionToken) => dispatch => {
+export const verifyUser = sessionToken => dispatch => {
   return axios({
     method: "post",
     url: "http://localhost:4000/registration/verifyLoggedInUser",
     data: {
-      username,
       sessionToken
     }
   })
@@ -124,10 +121,10 @@ export const verifyUser = (firstname, username, sessionToken) => dispatch => {
       dispatch({
         type: VERIFY_USER,
         payload: {
-          firstname: resp.data.payload.firstname,
           success: resp.data.success,
           message: resp.data.message,
-          username: resp.data.payload.username,
+          firstname: resp.data.payload.firstname,
+          email: resp.data.payload.email,
           sessionToken: resp.data.payload.sessionToken
         }
       });
@@ -143,12 +140,12 @@ export const verifyUser = (firstname, username, sessionToken) => dispatch => {
 };
 
 // Action to logout user
-export const logoutUser = (username, sessionToken) => dispatch => {
+export const logoutUser = (email, sessionToken) => dispatch => {
   return axios({
     method: "post",
     url: "http://localhost:4000/registration/logout",
     data: {
-      username,
+      email,
       sessionToken
     }
   })

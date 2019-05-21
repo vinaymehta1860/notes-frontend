@@ -16,15 +16,15 @@ class SignIn extends React.Component {
     super(props);
 
     this.state = {
-      _username: "",
+      _email: "",
       _password: "",
       _error: false,
       _errorMessage: ""
     };
   }
 
-  handleUsernameChange = event => {
-    this.setState({ _username: event.target.value });
+  handleEmailChange = event => {
+    this.setState({ _email: event.target.value });
   };
 
   handlePasswordChange = event => {
@@ -32,45 +32,45 @@ class SignIn extends React.Component {
   };
 
   keyPressed = event => {
-    const { _username, _password } = this.state;
-    if (event.key === "Enter" && _username !== "" && _password !== "") {
-      this.props.registerSignIn(_username, _password);
+    const { _email, _password } = this.state;
+    if (event.key === "Enter" && _email !== "" && _password !== "") {
+      this.props.registerSignIn(_email, _password);
     }
   };
 
   handleSignin = () => {
-    const { _username, _password } = this.state;
+    const { _email, _password } = this.state;
 
-    if (_username === "" || _password === "") {
+    if (_email === "" || _password === "") {
       this.setState({
         _error: true,
-        _errorMessage: "Username/Password can't be empty.!"
+        _errorMessage: "Email/Password can't be empty.!"
       });
       return;
     }
 
-    this.props.registerSignIn(_username, _password);
+    this.props.registerSignIn(_email, _password);
   };
 
   render() {
-    const { _username, _password, _error, _errorMessage } = this.state;
+    const { _email, _password, _error, _errorMessage } = this.state;
     let disabled = false;
 
     if (_error) {
       disabled = true;
-    } else if (_username === "" || _password === "") {
+    } else if (_email === "" || _password === "") {
       disabled = true;
     }
 
     return (
       <div className="notes registration-signin">
         <h3>Hop right in.!</h3>
-        <p>Username</p>
+        <p>Email</p>
         <input
           type="text"
-          value={_username}
-          onChange={this.handleUsernameChange}
-          placeholder="Username"
+          value={_email}
+          onChange={this.handleEmailChange}
+          placeholder="Email"
           autoFocus
         />
         <p>Password</p>

@@ -9,10 +9,10 @@ import {
 } from "../constants";
 
 const initialState = {
+  email: null,
   firstname: null,
   sessionToken: null,
   signedIn: false,
-  username: null,
   loading: true,
   sessionTokenStored: false,
   message: ""
@@ -29,18 +29,17 @@ const registration = (state = initialState, action) => {
       };
     case REGISTER_SIGNIN:
       const {
-        firstname,
         success,
-        username,
-        sessionToken,
-        message
+        message,
+        firstname,
+        email,
+        sessionToken
       } = action.payload;
-
       if (success) {
         return {
           ...state,
           firstname,
-          username,
+          email,
           sessionToken,
           signedIn: true
         };
@@ -55,15 +54,15 @@ const registration = (state = initialState, action) => {
       // FIXME: Had to do odd name spacing for the variables as react-redux wasn't allowing to grab
       //  same variables out of action.payload in the same way as it's done in the above switch case.
       const success1 = action.payload.success,
+        message1 = action.payload.message,
         firstname1 = action.payload.firstname,
-        username1 = action.payload.username,
-        sessionToken1 = action.payload.sessionToken,
-        message1 = action.payload.message;
+        email1 = action.payload.email,
+        sessionToken1 = action.payload.sessionToken;
       if (success1) {
         return {
           ...state,
           firstname: firstname1,
-          username: username1,
+          email: email1,
           sessionToken: sessionToken1,
           signedIn: true
         };
@@ -75,16 +74,16 @@ const registration = (state = initialState, action) => {
         };
       }
     case VERIFY_USER:
-      const uname = action.payload.username,
-        fname = action.payload.firstname,
+      const fname = action.payload.firstname,
         sToken = action.payload.sessionToken,
+        em = action.payload.email,
         msg = action.payload.message,
         done = action.payload.success;
       if (done) {
         return {
           ...state,
           firstname: fname,
-          username: uname,
+          email: em,
           sessionToken: sToken,
           signedIn: true
         };
@@ -99,9 +98,9 @@ const registration = (state = initialState, action) => {
       return {
         ...state,
         firstname: null,
+        email: null,
         sessionToken: null,
-        signedIn: false,
-        username: null
+        signedIn: false
       };
     case TOGGLE_LOADING:
       const { loading } = action.payload;
