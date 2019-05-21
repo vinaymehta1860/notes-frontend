@@ -27,15 +27,9 @@ class ShareNote extends React.Component {
   }
 
   shareNote = () => {
-    const {
-      recipients,
-      shareNote,
-      note_id,
-      username,
-      sessionToken
-    } = this.props;
+    const { recipients, shareNote, note_id, email, sessionToken } = this.props;
 
-    shareNote(username, sessionToken, note_id, recipients);
+    shareNote(email, sessionToken, note_id, recipients);
   };
 
   render() {
@@ -69,10 +63,10 @@ class ShareNote extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    email: state.registration.email,
     note_id: state.modal.data.note_id,
     noteShared: state.notes.flags.noteShared,
     recipients: state.modal.recipients,
-    username: state.registration.username,
     sessionToken: state.registration.sessionToken
   };
 };

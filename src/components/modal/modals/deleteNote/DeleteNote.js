@@ -15,9 +15,9 @@ class DeleteNote extends React.Component {
 
   onDelete = () => {
     // Delete the note
-    const { note_id, username, sessionToken } = this.props;
+    const { note_id, email, sessionToken } = this.props;
 
-    this.props.deleteNote(username, sessionToken, note_id);
+    this.props.deleteNote(email, sessionToken, note_id);
 
     // Take down the modal as well
     this.props.toggleModalView({ showModal: false, modalView: "" });
@@ -53,8 +53,8 @@ class DeleteNote extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    email: state.registration.email,
     note_id: state.modal.data.note_id,
-    username: state.registration.username,
     sessionToken: state.registration.sessionToken
   };
 };

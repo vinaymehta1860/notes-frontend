@@ -18,7 +18,6 @@ class SignUp extends React.Component {
     this.state = {
       _firstname: "",
       _lastname: "",
-      _username: "",
       _email: "",
       _password: "",
       _confirmPassword: "",
@@ -33,10 +32,6 @@ class SignUp extends React.Component {
 
   handleLastnameChange = event => {
     this.setState({ _lastname: event.target.value });
-  };
-
-  handleUsernameChange = event => {
-    this.setState({ _username: event.target.value });
   };
 
   handleEmailChange = event => {
@@ -55,7 +50,6 @@ class SignUp extends React.Component {
     const {
       _firstname,
       _lastname,
-      _username,
       _email,
       _password,
       _confirmPassword
@@ -64,7 +58,6 @@ class SignUp extends React.Component {
     if (
       _firstname === "" ||
       _lastname === "" ||
-      _username === "" ||
       _email === "" ||
       _password === "" ||
       _confirmPassword === ""
@@ -79,20 +72,13 @@ class SignUp extends React.Component {
       return;
     }
 
-    this.props.registerSignUp(
-      _firstname,
-      _lastname,
-      _username,
-      _email,
-      _password
-    );
+    this.props.registerSignUp(_firstname, _lastname, _email, _password);
   };
 
   render() {
     const {
       _firstname,
       _lastname,
-      _username,
       _email,
       _password,
       _confirmPassword,
@@ -107,7 +93,6 @@ class SignUp extends React.Component {
     } else if (
       _firstname === "" ||
       _lastname === "" ||
-      _username === "" ||
       _email === "" ||
       _password === "" ||
       _confirmPassword === ""
@@ -140,15 +125,6 @@ class SignUp extends React.Component {
               value={_lastname}
               onChange={this.handleLastnameChange}
               placeholder="Lastname"
-            />
-          </div>
-          <div className="registration-signup-content-field">
-            <span>Username</span>
-            <input
-              type="text"
-              value={_username}
-              onChange={this.handleUsernameChange}
-              placeholder="Username"
             />
           </div>
           <div className="registration-signup-content-field">

@@ -42,9 +42,9 @@ class HomePage extends React.Component {
 
   componentDidMount() {
     // Get all the notes when this component mounts
-    const { username, sessionToken } = this.props;
+    const { email, sessionToken } = this.props;
 
-    this.props.getAllNotes(username, sessionToken);
+    this.props.getAllNotes(email, sessionToken);
   }
 
   toggleLoading = () => {
@@ -52,24 +52,22 @@ class HomePage extends React.Component {
       firstname,
       signedIn,
       sessionToken,
-      sessionTokenStored,
-      username
+      sessionTokenStored
     } = this.props;
 
     if (signedIn && sessionTokenStored === false) {
-      // Directly store the sessionToken and username in localStorage without hashing.
+      // Directly store the sessionToken and firstname in localStorage without hashing.
       localStorage.setItem("firstname", firstname);
-      localStorage.setItem("username", username);
       localStorage.setItem("sessionToken", sessionToken);
 
-      // Change the flag that username and password have been stored in localStorage.
+      // Change the flag that firstname and sessionToken have been stored in localStorage.
       this.props.sessionStorageUpdate(true);
     }
   };
 
   handleLogout = () => {
-    const { username, sessionToken } = this.props;
-    this.props.logoutUser(username, sessionToken);
+    const { email, sessionToken } = this.props;
+    this.props.logoutUser(email, sessionToken);
   };
 
   hideNewNote = () => {
@@ -105,12 +103,12 @@ class HomePage extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    email: state.registration.email,
     firstname: state.registration.firstname,
     loading: state.registration.loading,
     signedIn: state.registration.signedIn,
     sessionToken: state.registration.sessionToken,
-    sessionTokenStored: state.registration.sessionTokenStored,
-    username: state.registration.username
+    sessionTokenStored: state.registration.sessionTokenStored
   };
 };
 
