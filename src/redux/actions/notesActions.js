@@ -9,12 +9,12 @@ import {
   ERROR_STATE
 } from "../constants";
 
-export const getAllNotes = (username, sessionToken) => dispatch => {
+export const getAllNotes = (email, sessionToken) => dispatch => {
   return axios({
     method: "post",
     url: "http://localhost:4000/notes/allnotes",
     data: {
-      username,
+      email,
       sessionToken
     }
   })
@@ -38,16 +38,12 @@ export const getAllNotes = (username, sessionToken) => dispatch => {
     });
 };
 
-export const createNewNote = (
-  username,
-  sessionToken,
-  noteObject
-) => dispatch => {
+export const createNewNote = (email, sessionToken, noteObject) => dispatch => {
   return axios({
     method: "post",
     url: "http://localhost:4000/notes/newnote",
     data: {
-      username,
+      email,
       sessionToken,
       note: {
         title: noteObject.title,
@@ -75,14 +71,14 @@ export const createNewNote = (
     });
 };
 
-export const editNote = (username, sessionToken, noteObject) => dispatch => {
+export const editNote = (email, sessionToken, noteObject) => dispatch => {
   const { note_id, title, desc } = noteObject;
 
   return axios({
     method: "post",
     url: "http://localhost:4000/notes/edit",
     data: {
-      username,
+      email,
       sessionToken,
       note_id,
       title,
@@ -108,12 +104,12 @@ export const editNote = (username, sessionToken, noteObject) => dispatch => {
     });
 };
 
-export const deleteNote = (username, sessionToken, note_id) => dispatch => {
+export const deleteNote = (email, sessionToken, note_id) => dispatch => {
   return axios({
     method: "post",
     url: "http://localhost:4000/notes/delete",
     data: {
-      username,
+      email,
       sessionToken,
       note_id
     }
@@ -138,7 +134,7 @@ export const deleteNote = (username, sessionToken, note_id) => dispatch => {
 };
 
 export const shareNote = (
-  username,
+  email,
   sessionToken,
   note_id,
   emails,
@@ -148,7 +144,7 @@ export const shareNote = (
     method: "post",
     url: "http://localhost:4000/notes/share",
     data: {
-      username,
+      email,
       sessionToken,
       note_id,
       emails,
@@ -177,12 +173,12 @@ export const shareNote = (
     });
 };
 
-export const unshareNote = (username, sessionToken, note_id) => dispatch => {
+export const unshareNote = (email, sessionToken, note_id) => dispatch => {
   return axios({
     method: "post",
     url: "http://localhost:4000/notes/unshare",
     data: {
-      username,
+      email,
       sessionToken,
       note_id
     }

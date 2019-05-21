@@ -23,9 +23,9 @@ class UnshareNote extends React.Component {
 
   onUnshare = () => {
     // Unshare the note
-    const { note_id, username, sessionToken, unshareNote } = this.props;
+    const { note_id, email, sessionToken, unshareNote } = this.props;
 
-    unshareNote(username, sessionToken, note_id);
+    unshareNote(email, sessionToken, note_id);
   };
 
   render() {
@@ -58,9 +58,9 @@ class UnshareNote extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    email: state.registration.email,
     note_id: state.modal.data.note_id,
     noteUnshared: state.notes.flags.noteUnshared,
-    username: state.registration.username,
     sessionToken: state.registration.sessionToken
   };
 };

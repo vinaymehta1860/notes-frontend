@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-// import crypto from "crypto";
 
 import "./landingPage.scss";
 
@@ -19,10 +18,9 @@ import {
 class LandingPage extends React.Component {
   componentWillMount() {
     const sessionToken = localStorage.getItem("sessionToken");
-    const username = localStorage.getItem("username");
-    const firstname = localStorage.getItem("firstname");
-    if (sessionToken && username) {
-      this.props.verifyUser(firstname, username, sessionToken);
+
+    if (sessionToken) {
+      this.props.verifyUser(sessionToken);
     }
   }
 
@@ -31,7 +29,6 @@ class LandingPage extends React.Component {
     // Change the flag that sessionToken is stored in localStorage
     if (!signedIn) {
       this.props.sessionStorageUpdate(false);
-      localStorage.removeItem("username");
       localStorage.removeItem("sessionToken");
       localStorage.removeItem("firstname");
     }
