@@ -18,11 +18,14 @@ class Owner extends React.Component {
           <Heading owner={true} />
         </div>
         <div className="notes-owner-content">
-          {ownerNotes.map(note => (
-            <Notes note={note} owner={true} key={note.note_id}>
-              {note.title}>
-            </Notes>
-          ))}
+          {[...ownerNotes].map(([key, note]) => {
+            return (
+              <Notes note={note} owner={true} key={note.note_id}>
+                {note.title}
+                {note.desc}
+              </Notes>
+            );
+          })}
         </div>
       </div>
     );

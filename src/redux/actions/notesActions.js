@@ -38,17 +38,14 @@ export const getAllNotes = (email, sessionToken) => dispatch => {
     });
 };
 
-export const createNewNote = (email, sessionToken, noteObject) => dispatch => {
+export const createNewNote = (email, sessionToken, note) => dispatch => {
   return axios({
     method: "post",
     url: "http://localhost:4000/notes/newnote",
     data: {
       email,
       sessionToken,
-      note: {
-        title: noteObject.title,
-        desc: noteObject.desc
-      }
+      note
     }
   })
     .then(resp => {

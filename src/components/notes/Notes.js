@@ -23,10 +23,10 @@ class Notes extends React.Component {
           />
         )}
         <div className="note-title">
-          <p>{this.props.note.title}</p>
+          <p>{note.title}</p>
         </div>
         <div className="note-data">
-          <p>{this.props.note.desc}</p>
+          <p>{note.desc}</p>
         </div>
       </div>
     );

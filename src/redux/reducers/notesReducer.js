@@ -8,8 +8,8 @@ import {
 } from "../constants";
 
 const initialState = {
-  ownerNotes: [],
-  sharedNotes: [],
+  ownerNotes: new Map(),
+  sharedNotes: new Map(),
   flags: {
     noteShared: false,
     noteUnshared: false
@@ -17,14 +17,38 @@ const initialState = {
 };
 
 const notes = (state = initialState, action) => {
+  let success;
+
+  if (action.payload !== undefined) {
+    success = action.payload.success;
+  }
+
   switch (action.type) {
     case GET_ALL_NOTES:
-      const { success, notes } = action.payload;
+      const { notes } = action.payload;
+      let ownerNotes = new Map(),
+        sharedNotes = new Map();
+
+      /*  Loop over the notes object which contains owner notes and notes shared with him.
+          Owner and shared notes are array so loop over them and initialise the map objects.
+      */
+      for (let noteType in notes) {
+        if (noteType.toString() === "owner") {
+          notes[noteType].forEach(note => {
+            ownerNotes.set(note.note_id, note);
+          });
+        } else {
+          notes[noteType].forEach(note => {
+            sharedNotes.set(note.note_id, note);
+          });
+        }
+      }
+
       if (success) {
         return {
           ...state,
-          ownerNotes: notes.owner,
-          sharedNotes: notes.shared
+          ownerNotes,
+          sharedNotes
         };
       } else {
         return {
@@ -32,18 +56,15 @@ const notes = (state = initialState, action) => {
         };
       }
     case CREATE_NEW_NOTE:
-      const success1 = action.payload.success;
-      let note = [];
+      if (success) {
+        const { noteAdded } = action.payload;
+        let newOwnerNotes = new Map(state.ownerNotes);
 
-      // Converting the note that is recently added to an array and then updating the state object
-      if (!Array.isArray(action.payload.noteAdded)) {
-        note = [action.payload.noteAdded];
-      }
+        newOwnerNotes.set(noteAdded.note_id, noteAdded);
 
-      if (success1) {
         return {
           ...state,
-          ownerNotes: [...state.ownerNotes, ...note]
+          ownerNotes: newOwnerNotes
         };
       } else {
         return {
@@ -51,45 +72,34 @@ const notes = (state = initialState, action) => {
         };
       }
     case EDIT_NOTE:
-      const success2 = action.payload.success;
-      const { editedNote } = action.payload;
-      let updatedNotes = [];
+      if (success) {
+        const { editedNote } = action.payload;
+        let latestOwnerNotes = new Map(state.ownerNotes);
 
-      if (success2) {
-        // Go through the ownerNotes array, find the note that is edited and replace it's
-        //  contents (title & desc).
-        updatedNotes = state.ownerNotes.map(note => {
-          if (note.note_id === editedNote.note_id) {
-            return { ...note, title: editedNote.title, desc: editedNote.desc };
-          }
+        let updatedNote = latestOwnerNotes.get(editedNote.note_id);
+        updatedNote.desc = editedNote.desc;
+        updatedNote.title = editedNote.title;
 
-          return note;
-        });
+        latestOwnerNotes.set(updatedNote.note_id, updatedNote);
 
-        return { ...state, ownerNotes: updatedNotes };
+        return {
+          ...state,
+          ownerNotes: latestOwnerNotes
+        };
       } else {
         return {
           ...state
         };
       }
     case DELETE_NOTE:
-      const success3 = action.payload.success;
-      const noteIdToDelete = action.payload.note_id;
-      let updatedOwnerNotes = state.ownerNotes;
-
-      if (success3) {
-        // Find the index of the note that you want to delete
-        const noteToDelete = updatedOwnerNotes.findIndex(note => {
-          if (note.note_id === noteIdToDelete) {
-            return true;
-          }
-        });
-
-        updatedOwnerNotes.splice(noteToDelete, 1);
+      if (success) {
+        const noteIdToDelete = action.payload.note_id;
+        let updatedOwnerNotes = new Map(state.ownerNotes);
+        updatedOwnerNotes.delete(noteIdToDelete);
 
         return {
           ...state,
-          ownerNotes: [...updatedOwnerNotes]
+          ownerNotes: updatedOwnerNotes
         };
       } else {
         return {
@@ -97,24 +107,20 @@ const notes = (state = initialState, action) => {
         };
       }
     case SHARE_NOTE:
-      const success4 = action.payload.success;
-      if (success4) {
-        // Find the note that is shared from ownerNotes array and update the sharedWith array
-        var newNotes = state.ownerNotes.map(note => {
-          if (note.note_id === action.payload.note_id) {
-            note.sharedWith.push(action.payload.sharedWith);
-            return note;
-          }
+      if (success) {
+        let newSharedNotes = new Map(state.ownerNotes);
 
-          return note;
-        });
+        let updatedSharedNote = newSharedNotes.get(action.payload.note_id);
+        updatedSharedNote.sharedWith.push(action.payload.sharedWith);
+
+        newSharedNotes.set(action.payload.note_id, updatedSharedNote);
 
         return {
           ...state,
           flags: {
             noteShared: action.payload.noteShared
           },
-          ownerNotes: newNotes
+          ownerNotes: newSharedNotes
         };
       } else {
         return {
@@ -122,20 +128,17 @@ const notes = (state = initialState, action) => {
         };
       }
     case UNSHARE_NOTE:
-      const success5 = action.payload.success;
+      if (success) {
+        let newPrivateNotes = new Map(state.ownerNotes);
 
-      if (success5) {
-        var newNotes = state.ownerNotes.map(note => {
-          if (note.note_id === action.payload.note_id) {
-            note.sharedWith = [];
-            return note;
-          }
-          return note;
-        });
+        let updatedPrivateNote = newPrivateNotes.get(action.payload.note_id);
+        updatedPrivateNote.sharedWith = [];
+
+        newPrivateNotes.set(action.payload.note_id, updatedPrivateNote);
 
         return {
           ...state,
-          ownerNotes: newNotes,
+          ownerNotes: newPrivateNotes,
           flags: {
             noteUnshared: true
           }
