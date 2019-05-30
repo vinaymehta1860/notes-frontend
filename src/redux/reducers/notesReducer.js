@@ -94,12 +94,12 @@ const notes = (state = initialState, action) => {
     case DELETE_NOTE:
       if (success) {
         const noteIdToDelete = action.payload.note_id;
-        let updatedOwnerNotes = new Map(state.myNotes);
+        let updatedOwnerNotes = new Map(state.ownerNotes);
         updatedOwnerNotes.delete(noteIdToDelete);
 
         return {
           ...state,
-          myNotes: updatedOwnerNotes
+          ownerNotes: updatedOwnerNotes
         };
       } else {
         return {
