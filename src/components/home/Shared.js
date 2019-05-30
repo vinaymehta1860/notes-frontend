@@ -19,7 +19,7 @@ class Shared extends React.Component {
         <div className="notes-shared-content">
           {[...sharedNotes].map(([key, note]) => {
             return (
-              <Notes note={note} owner={true} key={note.note_id}>
+              <Notes note={note} key={note.note_id}>
                 {note.title}
                 {note.desc}
               </Notes>
