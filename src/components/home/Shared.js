@@ -17,11 +17,14 @@ class Shared extends React.Component {
           <Heading owner={false} />
         </div>
         <div className="notes-shared-content">
-          {sharedNotes.map(note => (
-            <Notes note={note} key={note.title}>
-              {note.title}>
-            </Notes>
-          ))}
+          {[...sharedNotes].map(([key, note]) => {
+            return (
+              <Notes note={note} owner={true} key={note.note_id}>
+                {note.title}
+                {note.desc}
+              </Notes>
+            );
+          })}
         </div>
       </div>
     );

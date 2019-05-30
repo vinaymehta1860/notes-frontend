@@ -50,8 +50,7 @@
         height: auto;
         border: 1px solid lightgrey;
         text-align: justify;
-        text-indent: 5px;
-        padding: 5px;
+        padding: 10px;
 
         &:empty:not(:focus):before {
           content: attr(data-placeholder);
