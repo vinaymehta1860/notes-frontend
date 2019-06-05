@@ -10,6 +10,7 @@ import EditNote from "./modals/editNote/EditNote";
 import DeleteNote from "./modals/deleteNote/DeleteNote";
 import ShareNote from "./modals/shareNote/ShareNote";
 import UnshareNote from "./modals/unshareNote/UnshareNote";
+import LeaveNote from "./modals/leaveNote/LeaveNote";
 
 class Modal extends React.Component {
   constructor(props) {
@@ -39,6 +40,10 @@ class Modal extends React.Component {
       unshareNote: {
         header: { title: "Unshare Note", showClose: false },
         content: UnshareNote
+      },
+      leaveNote: {
+        header: { title: "Leave Note", showClose: false },
+        content: LeaveNote
       }
     };
 

@@ -4,7 +4,8 @@ import {
   EDIT_NOTE,
   SHARE_NOTE,
   UNSHARE_NOTE,
-  DELETE_NOTE
+  DELETE_NOTE,
+  LEAVE_NOTE
 } from "../constants";
 
 const initialState = {
@@ -12,7 +13,8 @@ const initialState = {
   sharedNotes: new Map(),
   flags: {
     noteShared: false,
-    noteUnshared: false
+    noteUnshared: false,
+    noteLeft: false
   }
 };
 
@@ -141,6 +143,20 @@ const notes = (state = initialState, action) => {
           ownerNotes: newPrivateNotes,
           flags: {
             noteUnshared: true
+          }
+        };
+      }
+    case LEAVE_NOTE:
+      if (success) {
+        let updatedSharedNotes = new Map(state.sharedNotes);
+        let noteIdToRemove = action.payload.note_id;
+        updatedSharedNotes.delete(noteIdToRemove);
+
+        return {
+          ...state,
+          sharedNotes: updatedSharedNotes,
+          flags: {
+            noteLeft: action.payload.noteLeft
           }
         };
       }

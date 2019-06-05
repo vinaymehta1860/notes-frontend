@@ -20,12 +20,13 @@ class NewNote extends React.Component {
   }
 
   createNote = () => {
-    const { email, sessionToken } = this.props;
+    const { email, firstname, lastname, sessionToken } = this.props;
     const { _noteTitle, _noteBody } = this.state;
 
     this.props.createNewNote(email, sessionToken, {
       title: _noteTitle,
-      desc: _noteBody
+      desc: _noteBody,
+      ownerName: firstname + " " + lastname
     });
 
     this.props.toggleModalView(false, "");
@@ -91,6 +92,8 @@ class NewNote extends React.Component {
 const mapStateToProps = state => {
   return {
     email: state.registration.email,
+    firstname: state.registration.firstname,
+    lastname: state.registration.lastname,
     sessionToken: state.registration.sessionToken
   };
 };

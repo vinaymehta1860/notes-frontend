@@ -16,6 +16,7 @@ export const EDIT_NOTE = "EDIT_NOTE";
 export const SHARE_NOTE = "SHARE_NOTE";
 export const UNSHARE_NOTE = "UNSHARE_NOTE";
 export const DELETE_NOTE = "DELETE_NOTE";
+export const LEAVE_NOTE = "LEAVE_NOTE";
 export const ADD_RECIPIENT = "ADD_RECIPIENT";
 export const CLEAR_RECIPIENTS = "CLEAR_RECIPIENTS";
 

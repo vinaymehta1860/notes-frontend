@@ -11,6 +11,7 @@ import {
 const initialState = {
   email: null,
   firstname: null,
+  lastname: null,
   sessionToken: null,
   signedIn: false,
   loading: true,
@@ -32,6 +33,7 @@ const registration = (state = initialState, action) => {
         success,
         message,
         firstname,
+        lastname,
         email,
         sessionToken
       } = action.payload;
@@ -39,6 +41,7 @@ const registration = (state = initialState, action) => {
         return {
           ...state,
           firstname,
+          lastname,
           email,
           sessionToken,
           signedIn: true
@@ -56,12 +59,14 @@ const registration = (state = initialState, action) => {
       const success1 = action.payload.success,
         message1 = action.payload.message,
         firstname1 = action.payload.firstname,
+        lastname1 = action.payload.lastname,
         email1 = action.payload.email,
         sessionToken1 = action.payload.sessionToken;
       if (success1) {
         return {
           ...state,
           firstname: firstname1,
+          lastname: lastname1,
           email: email1,
           sessionToken: sessionToken1,
           signedIn: true
@@ -75,6 +80,7 @@ const registration = (state = initialState, action) => {
       }
     case VERIFY_USER:
       const fname = action.payload.firstname,
+        lname = action.payload.lastname,
         sToken = action.payload.sessionToken,
         em = action.payload.email,
         msg = action.payload.message,
@@ -83,6 +89,7 @@ const registration = (state = initialState, action) => {
         return {
           ...state,
           firstname: fname,
+          lastname: lname,
           email: em,
           sessionToken: sToken,
           signedIn: true
