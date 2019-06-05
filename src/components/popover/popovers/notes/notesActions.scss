@@ -1,0 +1,47 @@
+/* .edit {
+  background-image: url(../../assets/power.jpg);
+} */
+
+.popover-icons-actions {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 5;
+  background-color: #e0e0e0;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  color: #424242;
+
+  .actions-popover-action-list {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    height: auto;
+
+    .actions-popover-action {
+      width: 130px;
+      height: auto;
+      border-bottom: 1px solid black;
+      border-radius: 10px;
+      cursor: pointer;
+
+      .actions-popover-action-item {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        height: 25px;
+        padding: 5px;
+      }
+
+      &:hover {
+        background-color: #424242;
+        color: white;
+      }
+
+      &:last-child {
+        border: none;
+      }
+    }
+  }
+}

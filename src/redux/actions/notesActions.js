@@ -6,6 +6,7 @@ import {
   SHARE_NOTE,
   UNSHARE_NOTE,
   DELETE_NOTE,
+  LEAVE_NOTE,
   ERROR_STATE
 } from "../constants";
 
@@ -187,6 +188,37 @@ export const unshareNote = (email, sessionToken, note_id) => dispatch => {
           success: resp.data.success,
           message: resp.data.message,
           note_id: resp.data.payload.note_id
+        }
+      });
+    })
+    .catch(error => {
+      dispatch({
+        type: ERROR_STATE,
+        payload: {
+          error
+        }
+      });
+    });
+};
+
+export const leaveNote = (email, sessionToken, note_id) => dispatch => {
+  return axios({
+    method: "post",
+    url: "http://localhost:4000/notes/leave",
+    data: {
+      email,
+      sessionToken,
+      note_id
+    }
+  })
+    .then(resp => {
+      dispatch({
+        type: LEAVE_NOTE,
+        payload: {
+          success: resp.data.success,
+          message: resp.data.message,
+          note_id: resp.data.payload.note_id,
+          noteLeft: true
         }
       });
     })

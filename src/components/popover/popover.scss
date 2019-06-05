@@ -1,0 +1,25 @@
+.popover-icons-container {
+  position: relative;
+
+  .popover-icons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 30px;
+    background-color: #eeeeee;
+    border-radius: 8px;
+
+    &.popover-icons-open {
+      background-color: #616161;
+    }
+
+    .popover-icon {
+      width: 20px;
+      height: 2px;
+      margin: 2px;
+      background-color: #9e9e9e;
+    }
+  }
+}
