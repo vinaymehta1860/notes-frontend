@@ -25,13 +25,15 @@ class Heading extends React.Component {
     if (owner) {
       text = "My Notes";
       button = (
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={this.createNewNote}
-        >
-          Create New Note
-        </Button>
+        <div className="forced-button">
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={this.createNewNote}
+          >
+            Create New Note
+          </Button>
+        </div>
       );
     } else {
       text = "Notes Shared with me";
@@ -40,7 +42,7 @@ class Heading extends React.Component {
     return (
       <div className="notes-heading">
         <p>{text}</p>
-        <div className="forced-button">{button}</div>
+        {button}
       </div>
     );
   }

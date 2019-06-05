@@ -54,6 +54,7 @@ export const registerSignIn = (email, password) => dispatch => {
           success: resp.data.success,
           message: resp.data.message,
           firstname: resp.data.payload.firstname,
+          lastname: resp.data.payload.lastname,
           email: resp.data.payload.email,
           sessionToken: resp.data.payload.sessionToken
         }
@@ -93,6 +94,7 @@ export const registerSignUp = (
           success: resp.data.success,
           message: resp.data.message,
           firstname: resp.data.payload.firstname,
+          lastname: resp.data.payload.lastname,
           email: resp.data.payload.email,
           sessionToken: resp.data.payload.sessionToken
         }
@@ -124,6 +126,7 @@ export const verifyUser = sessionToken => dispatch => {
           success: resp.data.success,
           message: resp.data.message,
           firstname: resp.data.payload.firstname,
+          lastname: resp.data.payload.lastname,
           email: resp.data.payload.email,
           sessionToken: resp.data.payload.sessionToken
         }

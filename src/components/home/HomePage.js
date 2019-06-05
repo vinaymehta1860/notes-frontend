@@ -33,10 +33,6 @@ class HomePage extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      newNote: false
-    };
-
     this.toggleLoading();
   }
 
@@ -68,11 +64,6 @@ class HomePage extends React.Component {
   handleLogout = () => {
     const { email, sessionToken } = this.props;
     this.props.logoutUser(email, sessionToken);
-  };
-
-  hideNewNote = () => {
-    console.log("Hide note button clicked.");
-    this.setState({ newNote: false });
   };
 
   render() {

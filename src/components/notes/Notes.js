@@ -7,23 +7,30 @@ import { connect } from "react-redux";
 
 import "./notes.scss";
 
-import TopBar from "./TopBar";
+import Popover from "../popover/popover";
 
 class Notes extends React.Component {
   render() {
     const { owner, note } = this.props;
+    let noteOwner;
+
+    if (!owner) {
+      const ownerName = note.ownerName;
+      noteOwner = (
+        <div className="note-title-owner-name">
+          <span>{ownerName}'s note</span>
+        </div>
+      );
+    }
 
     return (
       <div className="note">
-        {owner && (
-          <TopBar
-            owner={owner}
-            note={note}
-            shared={note.sharedWith.length > 0}
-          />
-        )}
         <div className="note-title">
-          <p>{note.title}</p>
+          {noteOwner}
+          <div className="note-title-info">
+            <span>{note.title}</span>
+            <Popover type="notes" owner={owner} data={note} />
+          </div>
         </div>
         <div className="note-data">
           <p>{note.desc}</p>
