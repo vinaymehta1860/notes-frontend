@@ -8,7 +8,7 @@ import "../commons/forcedStyles.scss";
 // Components
 import SignIn from "./SignIn.js";
 import SignUp from "./SignUp.js";
-import Button from "@material-ui/core/Button";
+import Button from "../commons/Button";
 
 class Registration extends React.Component {
   constructor(props) {
@@ -34,15 +34,21 @@ class Registration extends React.Component {
 
     if (pageView === "signin") {
       button = (
-        <Button variant="contained" color="primary" onClick={this.changeView}>
-          Create Account
-        </Button>
+        <Button
+          type="primary"
+          text="Create Account"
+          onClick={this.changeView}
+          disabled={false}
+        />
       );
     } else if (pageView === "signup") {
       button = (
-        <Button variant="contained" color="primary" onClick={this.changeView}>
-          Already registered?
-        </Button>
+        <Button
+          type="primary"
+          text="Already registered?"
+          onClick={this.changeView}
+          disabled={false}
+        />
       );
     }
 

@@ -5,17 +5,31 @@ import "./Button.scss";
 /*
   This component will require the following props
   props = {
-    type -> Currently only 'primary' type is supported
-    text -> for the text that should be displayed inside the button
-    disabled -> true/false
+    type -> primary / secondary
+    text -> text that should be displayed inside the button
+    disabled -> true / false
     onClick -> function to be called upon click of this button
   }
 */
 
 class Button extends React.Component {
   buildClassList = () => {
-    const { disabled } = this.props;
+    const { type, disabled } = this.props;
     let classes = [];
+
+    switch (type) {
+      case "primary":
+        classes.push("button-primary");
+        break;
+      case "secondary":
+        classes.push("button-secondary");
+        break;
+      case "transparent":
+        classes.push("button-transparent");
+        break;
+      default:
+        console.log("Unknown button type. Type received: " + type);
+    }
 
     if (disabled) {
       classes.push("button-disabled");
@@ -40,7 +54,7 @@ class Button extends React.Component {
         className={`button-component ${this.buildClassList()}`}
         onClick={this.onClick}
       >
-        {this.props.text}
+        {this.props.text.toUpperCase()}
       </div>
     );
   }

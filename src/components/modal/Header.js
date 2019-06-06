@@ -9,7 +9,7 @@ import {
 import "./modal.scss";
 
 // Components
-import Button from "@material-ui/core/Button";
+import Button from "../commons/Button";
 
 class Header extends React.Component {
   onClick = () => {
@@ -26,12 +26,11 @@ class Header extends React.Component {
     if (showClose) {
       button = (
         <Button
-          variant="outlined"
-          className="OutlinedButtons-button-193"
+          type="transparent"
+          text="Close"
           onClick={this.onClick}
-        >
-          Close
-        </Button>
+          disabled={false}
+        />
       );
     }
 

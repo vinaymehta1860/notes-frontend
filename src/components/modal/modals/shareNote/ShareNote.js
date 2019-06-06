@@ -14,7 +14,7 @@ import {
 // Components
 import Invitees from "./Invitees";
 import Recipients from "./Recipients";
-import Button from "@material-ui/core/Button";
+import Button from "../../../commons/Button";
 
 class ShareNote extends React.Component {
   componentDidUpdate() {
@@ -48,13 +48,11 @@ class ShareNote extends React.Component {
         </div>
         <div className="shareNote-modal-body-footer">
           <Button
-            variant="contained"
-            color="primary"
+            type="primary"
+            text="Share"
             onClick={this.shareNote}
             disabled={disabled}
-          >
-            Share
-          </Button>
+          />
         </div>
       </div>
     );

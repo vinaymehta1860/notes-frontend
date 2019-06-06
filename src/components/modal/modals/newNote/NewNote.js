@@ -1,9 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 import ContentEditable from "react-sane-contenteditable";
-import Button from "@material-ui/core/Button";
 
 import "./newNote.scss";
+
+import Button from "../../../commons/Button";
 
 // Actions
 import { createNewNote } from "../../../../redux/actions/notesActions";
@@ -41,10 +42,10 @@ class NewNote extends React.Component {
   };
 
   render() {
-    const { _noteTitle, _noteBody } = this.state;
+    const { _noteTitle } = this.state;
     let disabled = false;
 
-    if (_noteTitle === "" || _noteBody === "") {
+    if (_noteTitle === "") {
       disabled = true;
     }
 
@@ -76,13 +77,11 @@ class NewNote extends React.Component {
         </div>
         <div className="newNote-footer">
           <Button
-            variant="contained"
-            color="primary"
+            type="primary"
+            text="Create Note"
             onClick={this.createNote}
             disabled={disabled}
-          >
-            Create Note
-          </Button>
+          />
         </div>
       </div>
     );

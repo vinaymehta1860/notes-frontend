@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import "./homePage.scss";
 import "../commons/forcedStyles.scss";
 
-import Button from "@material-ui/core/Button";
+import Button from "../commons/Button";
 
 import { toggleModalView } from "../../redux/actions/modalActions";
 
@@ -27,12 +27,11 @@ class Heading extends React.Component {
       button = (
         <div className="forced-button">
           <Button
-            variant="contained"
-            color="primary"
+            type="primary"
+            text="Create New Note"
+            disabled={false}
             onClick={this.createNewNote}
-          >
-            Create New Note
-          </Button>
+          />
         </div>
       );
     } else {

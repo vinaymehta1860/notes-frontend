@@ -1,14 +1,46 @@
 .button-component {
-  display: flex;
-  align-items: center;
-  flex-wrap: nowrap;
-  justify-content: center;
-  margin: 10px;
-  width: 100px;
-  height: 30px;
-  border: 2px solid red;
-  border-radius: 3px;
+  display: inline-block;
+  width: auto;
+  height: 25px;
+  padding: 5px 15px;
+  line-height: 25px;
+  font-size: 14.5px;
+  color: white;
+  border-radius: 4px;
   cursor: pointer;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+.button-primary {
+  background-color: #3f51b5;
+  border: 1px solid #3f51b5;
+
+  &:not(.button-disabled):hover {
+    background-color: #0d47a1;
+    border: 1px solid #0d47a1;
+  }
+}
+
+.button-secondary {
+  background-color: #f50057;
+  border: 1px solid #f50057;
+
+  &:not(.button-disabled):hover {
+    background-color: #dc143c;
+    border: 1px solid #dc143c;
+  }
+}
+
+.button-transparent {
+  background-color: transparent;
+  border: 1px solid black;
+  color: black;
+
+  &:not(.button-disabled):hover {
+    background-color: #9e9e9e;
+    border: 1px solid #9e9e9e;
+    color: white;
+  }
 }
 
 .button-disabled {
