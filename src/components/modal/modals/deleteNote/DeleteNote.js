@@ -1,8 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import Button from "@material-ui/core/Button";
 
 import "./deleteNote.scss";
+
+import Button from "../../../commons/Button";
 
 import { deleteNote } from "../../../../redux/actions/notesActions";
 import { toggleModalView } from "../../../../redux/actions/modalActions";
@@ -31,20 +32,17 @@ class DeleteNote extends React.Component {
         </div>
         <div className="delete-note-body-footer">
           <Button
-            variant="contained"
-            className="OutlinedButtons-button-193"
+            type="transparent"
+            text="Cancel"
+            disabled={false}
             onClick={this.onCancel}
-          >
-            Cancel
-          </Button>
+          />
           <Button
-            variant="contained"
-            color="secondary"
-            className="OutlinedButtons-button-193"
+            type="secondary"
+            text="Delete"
+            disabled={false}
             onClick={this.onDelete}
-          >
-            Delete
-          </Button>
+          />
         </div>
       </div>
     );

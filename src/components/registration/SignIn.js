@@ -6,7 +6,7 @@ import "./registration.scss";
 import "../commons/forcedStyles.scss";
 
 // Components
-import Button from "@material-ui/core/Button";
+import Button from "../commons/Button";
 
 // Actions
 import { registerSignIn } from "../../redux/actions";
@@ -89,13 +89,11 @@ class SignIn extends React.Component {
           </div>
         )}
         <Button
-          variant="contained"
-          color="primary"
+          type="primary"
+          text="Get me in"
           onClick={this.handleSignin}
           disabled={disabled}
-        >
-          Get me in
-        </Button>
+        />
       </div>
     );
   }

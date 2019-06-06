@@ -7,6 +7,7 @@
     flex-direction: row;
     height: 65px;
     justify-content: space-between;
+    align-items: center;
     background-color: #fdf4e5;
     border: 1px solid lightgray;
 
@@ -17,6 +18,10 @@
         margin: 14px 0 12px 8px;
         font-size: 30px;
       }
+    }
+
+    .homepage-header-logout {
+      margin-right: 8px;
     }
 
     .MuiButtonBase-root-27 {

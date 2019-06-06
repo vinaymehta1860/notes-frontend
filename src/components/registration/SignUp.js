@@ -6,7 +6,7 @@ import "./registration.scss";
 import "../commons/forcedStyles.scss";
 
 // Components
-import Button from "@material-ui/core/Button";
+import Button from "../commons/Button";
 
 // Actions
 import { registerSignUp } from "../../redux/actions";
@@ -162,13 +162,11 @@ class SignUp extends React.Component {
         )}
         <div className="registration-signup-footer">
           <Button
-            variant="contained"
-            color="primary"
+            type="primary"
+            text="Get me started"
             onClick={this.handleSignup}
             disabled={disabled}
-          >
-            Get me started
-          </Button>
+          />
         </div>
       </div>
     );

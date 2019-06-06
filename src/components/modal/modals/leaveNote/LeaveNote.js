@@ -1,8 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import Button from "@material-ui/core/Button";
 
 import "./leaveNote.scss";
+
+import Button from "../../../commons/Button";
 
 import { leaveNote } from "../../../../redux/actions/notesActions";
 import { toggleModalView } from "../../../../redux/actions/modalActions";
@@ -36,20 +37,17 @@ class LeaveNote extends React.Component {
         </div>
         <div className="delete-note-body-footer">
           <Button
-            variant="contained"
-            className="OutlinedButtons-button-193"
+            type="transparent"
+            text="Cancel"
             onClick={this.onCancel}
-          >
-            Cancel
-          </Button>
+            disabled={false}
+          />
           <Button
-            variant="contained"
-            color="secondary"
-            className="OutlinedButtons-button-193"
+            type="secondary"
+            text="Leave"
             onClick={this.onLeave}
-          >
-            Leave
-          </Button>
+            disabled={false}
+          />
         </div>
       </div>
     );

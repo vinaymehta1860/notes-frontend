@@ -18,7 +18,7 @@ import "../commons/forcedStyles.scss";
 // Components
 import Owner from "./Owner";
 import Shared from "./Shared";
-import Button from "@material-ui/core/Button";
+import Button from "../commons/Button";
 
 // Actions
 import {
@@ -75,13 +75,14 @@ class HomePage extends React.Component {
           <div className="homepage-header-greeting">
             {firstname && <p>Hi {firstname}..!!</p>}
           </div>
-          <Button
-            variant="contained"
-            color="secondary"
-            onClick={this.handleLogout}
-          >
-            Logout
-          </Button>
+          <div className="homepage-header-logout">
+            <Button
+              type="secondary"
+              text="Logout"
+              disabled={false}
+              onClick={this.handleLogout}
+            />
+          </div>
         </div>
         <div className="homepage-content">
           <Owner />
