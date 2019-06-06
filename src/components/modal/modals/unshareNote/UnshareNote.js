@@ -1,8 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import Button from "@material-ui/core/Button";
 
 import "./unshareNote.scss";
+
+import Button from "../../../commons/Button";
 
 import { unshareNote } from "../../../../redux/actions/notesActions";
 import { toggleModalView } from "../../../../redux/actions/modalActions";
@@ -36,20 +37,17 @@ class UnshareNote extends React.Component {
         </div>
         <div className="delete-note-body-footer">
           <Button
-            variant="contained"
-            className="OutlinedButtons-button-193"
+            type="transparent"
+            text="Cancel"
             onClick={this.onCancel}
-          >
-            Cancel
-          </Button>
+            disabled={false}
+          />
           <Button
-            variant="contained"
-            color="secondary"
-            className="OutlinedButtons-button-193"
+            type="secondary"
+            text="Unshare"
             onClick={this.onUnshare}
-          >
-            Unshare
-          </Button>
+            disabled={false}
+          />
         </div>
       </div>
     );

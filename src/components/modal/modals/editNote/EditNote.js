@@ -1,9 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 import ContentEditable from "react-sane-contenteditable";
-import Button from "@material-ui/core/Button";
 
 import "./editNote.scss";
+
+import Button from "../../../commons/Button";
 
 // Actions
 import { editNote } from "../../../../redux/actions/notesActions";
@@ -76,13 +77,11 @@ class EditNote extends React.Component {
         </div>
         <div className="editNote-footer">
           <Button
-            variant="contained"
-            color="primary"
+            type="primary"
+            text="Edit Note"
             onClick={this.editNote}
-            disabled={disabled}
-          >
-            Edit Note
-          </Button>
+            disabled={false}
+          />
         </div>
       </div>
     );
