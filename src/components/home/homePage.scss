@@ -5,18 +5,16 @@
   .homepage-header {
     display: flex;
     flex-direction: row;
-    height: 65px;
+    height: 45px;
     justify-content: space-between;
     align-items: center;
-    background-color: #fdf4e5;
-    border: 1px solid lightgray;
 
     .homepage-header-greeting {
       color: #616161;
 
       p {
         margin: 14px 0 12px 8px;
-        font-size: 30px;
+        font-size: 20px;
       }
     }
 
