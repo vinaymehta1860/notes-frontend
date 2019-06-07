@@ -17,12 +17,16 @@
       height: 25px;
       margin: 10px;
 
-      input {
+      input[type="text"] {
         width: 620px;
         height: 30px;
         text-indent: 5px;
         padding-right: 30px;
         font-size: 15px;
+      }
+
+      input[type="text"]:focus {
+        outline: none;
       }
 
       span {
@@ -55,6 +59,10 @@
         &:empty:not(:focus):before {
           content: attr(data-placeholder);
           color: grey;
+        }
+
+        &:focus {
+          outline: none;
         }
       }
     }
