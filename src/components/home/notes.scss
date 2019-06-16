@@ -5,11 +5,25 @@
   align-items: center;
   height: 40px;
   padding: 3px 10px;
-  background-color: #e8eaf6;
+  background-color: #e0e0e0;
   color: #424242;
 
-  p {
-    font-size: 20px;
+  .notes-heading-left-pane {
+    p {
+      font-size: 20px;
+    }
+  }
+
+  .notes-heading-right-pane {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+
+    .notes-heading-filter {
+      margin: 0 30px 0 20px;
+    }
   }
 }
 

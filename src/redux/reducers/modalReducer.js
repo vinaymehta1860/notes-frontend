@@ -10,12 +10,7 @@ const initialState = {
     modalView: "",
     viewSize: "big"
   },
-  data: {
-    title: "",
-    desc: "",
-    note_id: "",
-    sharedWith: []
-  },
+  data: {},
   recipients: []
 };
 
@@ -30,8 +25,9 @@ const modal = (state = initialState, action) => {
       };
     case ADD_RECIPIENT:
       const { recipient } = action.payload;
-      let newRecipients = state.recipients;
+      let newRecipients = [...state.recipients];
       newRecipients.push(recipient);
+
       return {
         ...state,
         recipients: [...newRecipients]

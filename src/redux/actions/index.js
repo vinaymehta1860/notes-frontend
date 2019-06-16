@@ -56,6 +56,7 @@ export const registerSignIn = (email, password) => dispatch => {
           firstname: resp.data.payload.firstname,
           lastname: resp.data.payload.lastname,
           email: resp.data.payload.email,
+          groups: resp.data.payload.groups,
           sessionToken: resp.data.payload.sessionToken
         }
       });
@@ -96,6 +97,7 @@ export const registerSignUp = (
           firstname: resp.data.payload.firstname,
           lastname: resp.data.payload.lastname,
           email: resp.data.payload.email,
+          groups: resp.data.payload.groups,
           sessionToken: resp.data.payload.sessionToken
         }
       });
@@ -128,6 +130,7 @@ export const verifyUser = sessionToken => dispatch => {
           firstname: resp.data.payload.firstname,
           lastname: resp.data.payload.lastname,
           email: resp.data.payload.email,
+          groups: resp.data.payload.groups,
           sessionToken: resp.data.payload.sessionToken
         }
       });
