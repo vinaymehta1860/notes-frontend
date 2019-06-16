@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import "./homePage.scss";
 import "../commons/forcedStyles.scss";
 
+import Utility from "../utility/utility";
 import Button from "../commons/Button";
 
 import { toggleModalView } from "../../redux/actions/modalActions";
@@ -18,9 +19,12 @@ class Heading extends React.Component {
   };
 
   render() {
-    const { owner } = this.props;
-    let text = "";
-    let button = null;
+    const { owner, toggleFilterValue } = this.props;
+    let text, button;
+    let data = {
+      defaultText: "Group",
+      text: "Filter By: "
+    };
 
     if (owner) {
       text = "My Notes";
@@ -28,7 +32,7 @@ class Heading extends React.Component {
         <div className="forced-button">
           <Button
             type="primary"
-            text="Create New Note"
+            text="New Note"
             disabled={false}
             onClick={this.createNewNote}
           />
@@ -40,8 +44,19 @@ class Heading extends React.Component {
 
     return (
       <div className="notes-heading">
-        <p>{text}</p>
-        {button}
+        <div className="notes-heading-left-pane">
+          <p>{text}</p>
+        </div>
+        <div className="notes-heading-right-pane">
+          {owner && (
+            <Utility
+              type="filter-utility"
+              data={data}
+              callback={toggleFilterValue}
+            />
+          )}
+          {button}
+        </div>
       </div>
     );
   }

@@ -81,6 +81,7 @@ const notes = (state = initialState, action) => {
         let updatedNote = latestOwnerNotes.get(editedNote.note_id);
         updatedNote.desc = editedNote.desc;
         updatedNote.title = editedNote.title;
+        updatedNote.group = editedNote.group;
 
         latestOwnerNotes.set(updatedNote.note_id, updatedNote);
 

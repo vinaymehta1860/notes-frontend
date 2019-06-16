@@ -4,7 +4,9 @@ import ContentEditable from "react-sane-contenteditable";
 
 import "./editNote.scss";
 
+// Components
 import Button from "../../../commons/Button";
+import Utility from "../../../utility/utility";
 
 // Actions
 import { editNote } from "../../../../redux/actions/notesActions";
@@ -16,18 +18,24 @@ class EditNote extends React.Component {
 
     this.state = {
       _noteTitle: this.props.title,
-      _noteBody: this.props.desc
+      _noteBody: this.props.desc,
+      _noteGroup: this.props.group
     };
   }
 
+  toggleGroupName = value => {
+    this.setState({ _noteGroup: value });
+  };
+
   editNote = () => {
-    const { note_id, email, sessionToken } = this.props;
-    const { _noteTitle, _noteBody } = this.state;
+    const { note_id, email, sessionToken, group } = this.props;
+    const { _noteTitle, _noteBody, _noteGroup } = this.state;
 
     this.props.editNote(email, sessionToken, {
       note_id,
       title: _noteTitle,
-      desc: _noteBody
+      desc: _noteBody,
+      ...(group !== _noteGroup && { group: _noteGroup })
     });
 
     this.props.toggleModalView(false, "");
@@ -42,31 +50,48 @@ class EditNote extends React.Component {
   };
 
   render() {
-    const { _noteTitle, _noteBody } = this.state;
+    const { _noteTitle, _noteBody, _noteGroup } = this.state;
     let disabled = false;
 
-    if (_noteTitle === "" || _noteBody === "") {
+    if (_noteTitle === "") {
       disabled = true;
     }
+
+    let data = {
+      ...((_noteGroup === null || _noteGroup === undefined) && {
+        defaultText: "Select"
+      }),
+      ...(_noteGroup && { defaultText: _noteGroup }),
+      text: "Group: "
+    };
 
     return (
       <div className="editNote-body">
         <div className="editNote-content">
-          <div className="editNote-content-title">
-            <span>Title: </span>
-            <input
-              type="text"
-              value={_noteTitle}
-              onChange={this.onNoteTitleChange}
-              placeholder="Note title"
-              autoFocus
-            />
+          <div className="editNote-content-title-container">
+            <div className="editNote-content-title-bar">
+              <span>Title: </span>
+              <input
+                type="text"
+                value={_noteTitle}
+                onChange={this.onNoteTitleChange}
+                placeholder="Note title"
+                autoFocus
+              />
+            </div>
+            <div className="editNote-content-utility">
+              <Utility
+                type="filter-utility"
+                data={data}
+                callback={this.toggleGroupName}
+              />
+            </div>
           </div>
           <div className="editNote-content-body">
             <span>Note Body:</span>
             <ContentEditable
               className="editNote-content-body-editable"
-              content={this.state._noteBody}
+              content={_noteBody}
               data-placeholder="Enter note contents here"
               editable={true}
               multiLine={true}
@@ -80,7 +105,7 @@ class EditNote extends React.Component {
             type="primary"
             text="Edit Note"
             onClick={this.editNote}
-            disabled={false}
+            disabled={disabled}
           />
         </div>
       </div>
@@ -92,6 +117,7 @@ const mapStateToProps = state => {
   return {
     desc: state.modal.data.desc,
     email: state.registration.email,
+    group: state.modal.data.group,
     note_id: state.modal.data.note_id,
     sessionToken: state.registration.sessionToken,
     title: state.modal.data.title

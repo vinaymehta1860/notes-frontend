@@ -6,8 +6,6 @@ import { toggleModalView } from "../../../../redux/actions/modalActions";
 import "./notesActions.scss";
 
 class notesActions extends React.Component {
-  // This function will be called first and then it'll call
-  // other functions based on the type
   actionController = event => {
     // First, disable the popover and then call the apt function
     const { cancelPopover } = this.props;
@@ -36,11 +34,11 @@ class notesActions extends React.Component {
   };
 
   editNote = () => {
-    const { note_id, title, desc } = this.props.data;
+    const { note_id, title, desc, group } = this.props.data;
 
     this.props.toggleModalView(
       { showModal: true, modalView: "editNote", viewSize: "big" },
-      { note_id, title, desc }
+      { note_id, title, desc, group }
     );
   };
 

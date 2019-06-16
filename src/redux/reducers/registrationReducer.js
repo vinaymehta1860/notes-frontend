@@ -11,6 +11,7 @@ import {
 const initialState = {
   email: null,
   firstname: null,
+  groups: null,
   lastname: null,
   sessionToken: null,
   signedIn: false,
@@ -35,6 +36,7 @@ const registration = (state = initialState, action) => {
         firstname,
         lastname,
         email,
+        groups,
         sessionToken
       } = action.payload;
       if (success) {
@@ -43,6 +45,7 @@ const registration = (state = initialState, action) => {
           firstname,
           lastname,
           email,
+          groups,
           sessionToken,
           signedIn: true
         };
@@ -61,6 +64,7 @@ const registration = (state = initialState, action) => {
         firstname1 = action.payload.firstname,
         lastname1 = action.payload.lastname,
         email1 = action.payload.email,
+        groups1 = action.payload.groups,
         sessionToken1 = action.payload.sessionToken;
       if (success1) {
         return {
@@ -68,6 +72,7 @@ const registration = (state = initialState, action) => {
           firstname: firstname1,
           lastname: lastname1,
           email: email1,
+          groups: groups1,
           sessionToken: sessionToken1,
           signedIn: true
         };
@@ -83,6 +88,7 @@ const registration = (state = initialState, action) => {
         lname = action.payload.lastname,
         sToken = action.payload.sessionToken,
         em = action.payload.email,
+        gr = action.payload.groups,
         msg = action.payload.message,
         done = action.payload.success;
       if (done) {
@@ -91,6 +97,7 @@ const registration = (state = initialState, action) => {
           firstname: fname,
           lastname: lname,
           email: em,
+          groups: gr,
           sessionToken: sToken,
           signedIn: true
         };
