@@ -4,7 +4,9 @@ import ContentEditable from "react-sane-contenteditable";
 
 import "./newNote.scss";
 
+// Components
 import Button from "../../../commons/Button";
+import Utility from "../../../utility/utility";
 
 // Actions
 import { createNewNote } from "../../../../redux/actions/notesActions";
@@ -16,17 +18,23 @@ class NewNote extends React.Component {
 
     this.state = {
       _noteTitle: "",
-      _noteBody: ""
+      _noteBody: "",
+      groupName: null
     };
   }
 
+  toggleGroupName = value => {
+    this.setState({ groupName: value });
+  };
+
   createNote = () => {
     const { email, firstname, lastname, sessionToken } = this.props;
-    const { _noteTitle, _noteBody } = this.state;
+    const { _noteTitle, _noteBody, groupName } = this.state;
 
     this.props.createNewNote(email, sessionToken, {
       title: _noteTitle,
       desc: _noteBody,
+      group: groupName,
       ownerName: firstname + " " + lastname
     });
 
@@ -45,6 +53,11 @@ class NewNote extends React.Component {
     const { _noteTitle } = this.state;
     let disabled = false;
 
+    let data = {
+      defaultText: "Select",
+      text: "Group: "
+    };
+
     if (_noteTitle === "") {
       disabled = true;
     }
@@ -52,15 +65,24 @@ class NewNote extends React.Component {
     return (
       <div className="newNote-body">
         <div className="newNote-content">
-          <div className="newNote-content-title">
-            <span>Title: </span>
-            <input
-              type="text"
-              value={_noteTitle}
-              onChange={this.onNoteTitleChange}
-              placeholder="Note title"
-              autoFocus
-            />
+          <div className="newNote-content-title-container">
+            <div className="newNote-content-title-bar">
+              <span>Title: </span>
+              <input
+                type="text"
+                value={_noteTitle}
+                onChange={this.onNoteTitleChange}
+                placeholder="Note title"
+                autoFocus
+              />
+            </div>
+            <div className="editNote-content-utility">
+              <Utility
+                type="filter-utility"
+                data={data}
+                callback={this.toggleGroupName}
+              />
+            </div>
           </div>
           <div className="newNote-content-body">
             <span>Note Body:</span>

@@ -10,6 +10,10 @@
   background-color: #fffafa;
   box-shadow: 3px 3px 3px 3px #e0e0e0;
 
+  .registration-text {
+    color: #616161;
+  }
+
   .registration-content {
     .registration-signin {
       margin-bottom: 15px;
@@ -66,6 +70,10 @@
     text-indent: 5px;
     width: 250px;
     height: 30px;
+  }
+
+  input:focus {
+    outline: none;
   }
 
   ::-webkit-input-placeholder {

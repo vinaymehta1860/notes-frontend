@@ -11,10 +11,10 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import "./popover.scss";
+import "./notesPopover.scss";
 
 // Popover Components
-import NotesActions from "./popovers/notes/notesActions";
+import NotesActions from "./notesActions";
 
 class Popover extends React.Component {
   constructor(props) {
@@ -30,7 +30,7 @@ class Popover extends React.Component {
   togglePopover = () => {
     const { type, data } = this.props;
 
-    this.setState({ _isOpen: true, _type: type, _data: data });
+    this.setState({ _isOpen: true, _type: type, _data: data.note });
   };
 
   cancelPopover = () => {
@@ -49,17 +49,17 @@ class Popover extends React.Component {
   };
 
   render() {
-    const { owner } = this.props;
-    const { _isOpen, _type, _data } = this.state;
+    const { data } = this.props;
+    const { _isOpen, _type } = this.state;
     let popoverActions;
 
     if (_isOpen) {
       switch (_type) {
-        case "notes":
+        case "notes-utility":
           popoverActions = (
             <NotesActions
-              owner={owner}
-              data={_data}
+              owner={data.owner}
+              data={data.note}
               cancelPopover={this.cancelPopover}
             />
           );

@@ -69,18 +69,14 @@ export const createNewNote = (email, sessionToken, note) => dispatch => {
     });
 };
 
-export const editNote = (email, sessionToken, noteObject) => dispatch => {
-  const { note_id, title, desc } = noteObject;
-
+export const editNote = (email, sessionToken, note) => dispatch => {
   return axios({
     method: "post",
     url: "http://localhost:4000/notes/edit",
     data: {
       email,
       sessionToken,
-      note_id,
-      title,
-      desc
+      note
     }
   })
     .then(resp => {

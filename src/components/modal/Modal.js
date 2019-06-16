@@ -22,7 +22,7 @@ class Modal extends React.Component {
   buildPropsMap = () => {
     const propsMap = {
       newNote: {
-        header: { title: "Create New Note", showClose: true },
+        header: { title: "New Note", showClose: true },
         content: NewNote
       },
       editNote: {

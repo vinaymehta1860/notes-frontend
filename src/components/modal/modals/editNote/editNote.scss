@@ -9,28 +9,40 @@
     justify-content: space-evenly;
     height: 480px;
 
-    .editNote-content-title {
+    .editNote-content-title-container {
       display: flex;
       flex-direction: row;
-      flex-wrap: nowrap;
-      justify-content: space-evenly;
-      height: 25px;
-      margin: 10px;
+      align-items: center;
 
-      input {
-        width: 620px;
-        height: 30px;
-        text-indent: 5px;
-        padding-right: 30px;
-        font-size: 15px;
-      }
+      .editNote-content-title-bar {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
+        height: 25px;
+        margin: 10px;
 
-      span {
-        margin-top: 5px;
-      }
+        input[type="text"] {
+          width: 400px;
+          height: 30px;
+          margin-left: 10px;
+          text-indent: 5px;
+          font-size: 15px;
+          color: #424242;
+        }
 
-      ::-webkit-input-placeholder {
-        font-size: 15px;
+        input[type="text"]:focus {
+          outline: none;
+        }
+
+        span {
+          margin-top: 5px;
+        }
+
+        ::-webkit-input-placeholder {
+          font-size: 15px;
+        }
       }
     }
 
@@ -41,7 +53,7 @@
       margin: 10px;
 
       span {
-        margin: 10px 10px 10px 13px;
+        margin: 10px 10px 10px 0;
         text-align: justify;
       }
 
@@ -51,10 +63,15 @@
         border: 1px solid lightgrey;
         text-align: justify;
         padding: 10px;
+        color: #424242;
 
         &:empty:not(:focus):before {
           content: attr(data-placeholder);
           color: grey;
+        }
+
+        &:focus {
+          outline: none;
         }
       }
     }

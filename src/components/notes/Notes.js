@@ -7,12 +7,17 @@ import { connect } from "react-redux";
 
 import "./notes.scss";
 
-import Popover from "../popover/popover";
+import Utility from "../utility/utility";
 
 class Notes extends React.Component {
   render() {
     const { owner, note } = this.props;
+
     let noteOwner;
+    let data = {
+      note,
+      owner
+    };
 
     if (!owner) {
       const ownerName = note.ownerName;
@@ -25,11 +30,11 @@ class Notes extends React.Component {
 
     return (
       <div className="note">
-        <div className="note-title">
+        <div className="note-title-bar-container">
           {noteOwner}
-          <div className="note-title-info">
+          <div className="note-title">
             <span>{note.title}</span>
-            <Popover type="notes" owner={owner} data={note} />
+            <Utility type="notes-utility" data={data} />
           </div>
         </div>
         <div className="note-data">
