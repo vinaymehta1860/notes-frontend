@@ -15,6 +15,7 @@ import "./notesPopover.scss";
 
 // Popover Components
 import NotesActions from "./notesActions";
+import Menu from "../../../../assets/svgs/Menu";
 
 class Popover extends React.Component {
   constructor(props) {
@@ -76,9 +77,7 @@ class Popover extends React.Component {
           className={`popover-icons ${this.buildClassList()}`}
           onMouseEnter={this.togglePopover}
         >
-          <div className="popover-icon" />
-          <div className="popover-icon" />
-          <div className="popover-icon" />
+          <Menu />
         </div>
         <div className="popover-icons-actions">{popoverActions}</div>
       </div>
