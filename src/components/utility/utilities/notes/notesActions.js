@@ -1,41 +1,24 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { toggleModalView } from "../../../../redux/actions/modalActions";
-
 import "./notesActions.scss";
 
+// Actions
+import { toggleModalView } from "../../../../redux/actions/modalActions";
+
+// SVGS
+import Delete from "../../../../assets/svgs/Delete";
+import Edit from "../../../../assets/svgs/Edit";
+import Leave from "../../../../assets/svgs/Leave";
+import Share from "../../../../assets/svgs/Share";
+import Unshare from "../../../../assets/svgs/Unshare";
+
 class notesActions extends React.Component {
-  actionController = event => {
-    // First, disable the popover and then call the apt function
+  editNote = () => {
     const { cancelPopover } = this.props;
     cancelPopover(false);
 
-    const type = event.target.innerHTML;
-    switch (type) {
-      case "Edit":
-        this.editNote();
-        break;
-      case "Share":
-        this.shareNote();
-        break;
-      case "Delete":
-        this.deleteNote();
-        break;
-      case "Unshare":
-        this.unshareNote();
-        break;
-      case "Leave":
-        this.leaveNote();
-        break;
-      default:
-        console.log("Unknown action type.");
-    }
-  };
-
-  editNote = () => {
     const { note_id, title, desc, group } = this.props.data;
-
     this.props.toggleModalView(
       { showModal: true, modalView: "editNote", viewSize: "big" },
       { note_id, title, desc, group }
@@ -43,8 +26,10 @@ class notesActions extends React.Component {
   };
 
   shareNote = () => {
-    const { note_id, sharedWith } = this.props.data;
+    const { cancelPopover } = this.props;
+    cancelPopover(false);
 
+    const { note_id, sharedWith } = this.props.data;
     this.props.toggleModalView(
       { showModal: true, modalView: "shareNote", viewSize: "big" },
       { note_id, sharedWith }
@@ -52,8 +37,10 @@ class notesActions extends React.Component {
   };
 
   deleteNote = () => {
-    const { note_id } = this.props.data;
+    const { cancelPopover } = this.props;
+    cancelPopover(false);
 
+    const { note_id } = this.props.data;
     this.props.toggleModalView(
       { showModal: true, modalView: "deleteNote", viewSize: "small" },
       { note_id }
@@ -61,8 +48,10 @@ class notesActions extends React.Component {
   };
 
   unshareNote = () => {
-    const { note_id } = this.props.data;
+    const { cancelPopover } = this.props;
+    cancelPopover(false);
 
+    const { note_id } = this.props.data;
     this.props.toggleModalView(
       { showModal: true, modalView: "unshareNote", viewSize: "small" },
       { note_id }
@@ -70,8 +59,10 @@ class notesActions extends React.Component {
   };
 
   leaveNote = () => {
-    const { note_id } = this.props.data;
+    const { cancelPopover } = this.props;
+    cancelPopover(false);
 
+    const { note_id } = this.props.data;
     this.props.toggleModalView(
       {
         showModal: true,
@@ -97,50 +88,55 @@ class notesActions extends React.Component {
     editAction = (
       <div
         className="actions-popover-action-item edit-action"
-        onClick={this.actionController}
+        title="Edit"
+        onClick={this.editNote}
         key="1"
       >
-        Edit
+        <Edit />
       </div>
     );
 
     shareAction = (
       <div
         className="actions-popover-action-item share-action"
-        onClick={this.actionController}
+        title="Share"
+        onClick={this.shareNote}
         key="2"
       >
-        Share
+        <Share />
       </div>
     );
 
     deleteAction = (
       <div
         className="actions-popover-action-item delete-action"
-        onClick={this.actionController}
+        title="Delete"
+        onClick={this.deleteNote}
         key="3"
       >
-        Delete
+        <Delete />
       </div>
     );
 
     unshareAction = (
       <div
         className="actions-popover-action-item unshare-action"
-        onClick={this.actionController}
+        title="Un-Share"
+        onClick={this.unshareNote}
         key="4"
       >
-        Unshare
+        <Unshare />
       </div>
     );
 
     leaveAction = (
       <div
         className="actions-popover-action-item leave-action"
-        onClick={this.actionController}
+        title="Leave"
+        onClick={this.leaveNote}
         key="5"
       >
-        Leave
+        <Leave />
       </div>
     );
 

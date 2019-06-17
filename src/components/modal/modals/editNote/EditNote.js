@@ -103,7 +103,7 @@ class EditNote extends React.Component {
         <div className="editNote-footer">
           <Button
             type="primary"
-            text="Edit Note"
+            text="Save"
             onClick={this.editNote}
             disabled={disabled}
           />

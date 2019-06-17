@@ -7,22 +7,22 @@
   top: 100%;
   right: 0;
   z-index: 5;
-  background-color: #e0e0e0;
-  border: 1px solid #e0e0e0;
+  background-color: #eeeeee;
   border-radius: 10px;
   color: #424242;
 
   .actions-popover-action-list {
     display: flex;
-    flex-direction: column;
+    flex-direction: row-reverse;
+    justify-content: space-evenly;
     flex-wrap: nowrap;
+    width: auto;
     height: auto;
 
     .actions-popover-action {
-      width: 130px;
+      width: auto;
       height: auto;
-      border-bottom: 1px solid black;
-      border-radius: 10px;
+      padding: 3px 10px;
       cursor: pointer;
 
       .actions-popover-action-item {
@@ -35,12 +35,9 @@
       }
 
       &:hover {
-        background-color: #424242;
+        background-color: #9e9e9e;
         color: white;
-      }
-
-      &:last-child {
-        border: none;
+        border-radius: 10px;
       }
     }
   }
