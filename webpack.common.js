@@ -1,23 +1,7 @@
 const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   entry: path.join(__dirname, "/src", "index.js"),
-  output: {
-    path: path.join(__dirname, "/build"),
-    filename: "notes.js"
-  },
-  mode: process.env.NODE_ENV || "development",
-  resolve: {
-    modules: [path.resolve(__dirname, "/"), "node_modules"]
-  },
-  devServer: {
-    contentBase: path.join(__dirname, "/build"),
-    compress: true,
-    port: 3001,
-    watchContentBase: true,
-    progress: true
-  },
   module: {
     rules: [
       {
@@ -36,6 +20,8 @@ module.exports = {
           "sass-loader" // compiles Sass to CSS, using Node Sass by default
         ]
       },
+      // Even though the file-loader isn't requried right now, it's there
+      //  in case we need it in the future
       {
         test: /\.(jpg|jpeg|png|gif|mp3|svg)$/,
         loaders: ["file-loader"]
@@ -49,11 +35,5 @@ module.exports = {
         }
       }
     ]
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname, "./public/", "index.html"),
-      favicon: path.join(__dirname, "./public/", "favicon.ico")
-    })
-  ]
+  }
 };
