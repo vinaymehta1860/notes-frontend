@@ -7,27 +7,27 @@
  *  Only import shared notes if the user has shared notes with him. Pass the complete
  *  shared object from API response to Shared component for it to render it on the home page.
  */
-import React from "react";
-import { connect } from "react-redux";
+import React from 'react';
+import { connect } from 'react-redux';
 
 // Styles
-import "./homePage.scss";
-import "./notes.scss";
-import "../commons/forcedStyles.scss";
+import './homePage.scss';
+import './notes.scss';
+import '../commons/forcedStyles.scss';
 
 // Components
-import Owner from "./Owner";
-import Shared from "./Shared";
-import Button from "../commons/Button";
+import Owner from './Owner';
+import Shared from './Shared';
+import Button from '../commons/Button';
 
 // Actions
 import {
   toggleLoading,
   sessionStorageUpdate,
   logoutUser
-} from "../../redux/actions";
+} from '../../redux/actions';
 
-import { getAllNotes } from "../../redux/actions/notesActions";
+import { getAllNotes } from '../../redux/actions/notesActions';
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -52,11 +52,10 @@ class HomePage extends React.Component {
     } = this.props;
 
     if (signedIn && sessionTokenStored === false) {
-      // Directly store the sessionToken and firstname in localStorage without hashing.
-      localStorage.setItem("firstname", firstname);
-      localStorage.setItem("sessionToken", sessionToken);
+      // Directly store the firstname in localStorage without hashing.
+      localStorage.setItem('firstname', firstname);
 
-      // Change the flag that firstname and sessionToken have been stored in localStorage.
+      // Change the flag that firstname has been stored in localStorage.
       this.props.sessionStorageUpdate(true);
     }
   };

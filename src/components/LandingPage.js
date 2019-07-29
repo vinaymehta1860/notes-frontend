@@ -1,27 +1,23 @@
-import React from "react";
-import { connect } from "react-redux";
+import React from 'react';
+import { connect } from 'react-redux';
 
-import "./landingPage.scss";
+import './landingPage.scss';
 
 // Components
-import Registration from "./registration/Registration";
-import HomePage from "./home/HomePage";
-import Modal from "./modal/Modal";
+import Registration from './registration/Registration';
+import HomePage from './home/HomePage';
+import Modal from './modal/Modal';
 
 // Actions
 import {
   registerSignIn,
   verifyUser,
   sessionStorageUpdate
-} from "../redux/actions";
+} from '../redux/actions';
 
 class LandingPage extends React.Component {
   componentWillMount() {
-    const sessionToken = localStorage.getItem("sessionToken");
-
-    if (sessionToken) {
-      this.props.verifyUser(sessionToken);
-    }
+    this.props.verifyUser();
   }
 
   componentDidUpdate() {
@@ -29,8 +25,7 @@ class LandingPage extends React.Component {
     // Change the flag that sessionToken is stored in localStorage
     if (!signedIn) {
       this.props.sessionStorageUpdate(false);
-      localStorage.removeItem("sessionToken");
-      localStorage.removeItem("firstname");
+      localStorage.removeItem('firstname');
     }
   }
 

@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 import {
   CHANGE_VIEW,
   REGISTER_SIGNIN,
@@ -8,7 +8,7 @@ import {
   ERROR_STATE,
   TOGGLE_LOADING,
   TOGGLE_SESSIONSTORED
-} from "../constants";
+} from '../constants';
 
 export const changeView = text => {
   return {
@@ -40,14 +40,17 @@ export const sessionStorageUpdate = sessionStoreValue => {
 // Action to signin user
 export const registerSignIn = (email, password) => dispatch => {
   return axios({
-    method: "post",
-    url: "http://localhost:4000/registration/signin",
+    method: 'post',
+    url: 'http://localhost:4000/registration/signin',
     data: {
       email,
       password
-    }
+    },
+    timeout: 10000,
+    withCredentials: true
   })
     .then(resp => {
+      debugger;
       dispatch({
         type: REGISTER_SIGNIN,
         payload: {
@@ -79,14 +82,16 @@ export const registerSignUp = (
   password
 ) => dispatch => {
   return axios({
-    method: "post",
-    url: "http://localhost:4000/registration/signup",
+    method: 'post',
+    url: 'http://localhost:4000/registration/signup',
     data: {
       firstname,
       lastname,
       email,
       password
-    }
+    },
+    timeout: 15000,
+    withCredentials: true
   })
     .then(resp => {
       dispatch({
@@ -113,13 +118,12 @@ export const registerSignUp = (
 };
 
 // Action to check the localStorage values, verify and sign in user
-export const verifyUser = sessionToken => dispatch => {
+export const verifyUser = () => dispatch => {
   return axios({
-    method: "post",
-    url: "http://localhost:4000/registration/verifyLoggedInUser",
-    data: {
-      sessionToken
-    }
+    method: 'post',
+    url: 'http://localhost:4000/registration/verifyLoggedInUser',
+    timeout: 10000,
+    withCredentials: true
   })
     .then(resp => {
       dispatch({
@@ -146,14 +150,12 @@ export const verifyUser = sessionToken => dispatch => {
 };
 
 // Action to logout user
-export const logoutUser = (email, sessionToken) => dispatch => {
+export const logoutUser = () => dispatch => {
   return axios({
-    method: "post",
-    url: "http://localhost:4000/registration/logout",
-    data: {
-      email,
-      sessionToken
-    }
+    method: 'post',
+    url: 'http://localhost:4000/registration/logout',
+    timeout: 10000,
+    withCredentials: true
   })
     .then(resp => {
       dispatch({

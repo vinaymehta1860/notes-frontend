@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 import {
   GET_ALL_NOTES,
   CREATE_NEW_NOTE,
@@ -8,16 +8,14 @@ import {
   DELETE_NOTE,
   LEAVE_NOTE,
   ERROR_STATE
-} from "../constants";
+} from '../constants';
 
-export const getAllNotes = (email, sessionToken) => dispatch => {
+export const getAllNotes = () => dispatch => {
   return axios({
-    method: "post",
-    url: "http://localhost:4000/notes/allnotes",
-    data: {
-      email,
-      sessionToken
-    }
+    method: 'post',
+    url: 'http://localhost:4000/notes/allnotes',
+    timeout: 10000,
+    withCredentials: true
   })
     .then(resp => {
       dispatch({
@@ -39,15 +37,15 @@ export const getAllNotes = (email, sessionToken) => dispatch => {
     });
 };
 
-export const createNewNote = (email, sessionToken, note) => dispatch => {
+export const createNewNote = (note = {}) => dispatch => {
   return axios({
-    method: "post",
-    url: "http://localhost:4000/notes/newnote",
+    method: 'post',
+    url: 'http://localhost:4000/notes/newnote',
     data: {
-      email,
-      sessionToken,
       note
-    }
+    },
+    timeout: 10000,
+    withCredentials: true
   })
     .then(resp => {
       dispatch({
@@ -69,15 +67,15 @@ export const createNewNote = (email, sessionToken, note) => dispatch => {
     });
 };
 
-export const editNote = (email, sessionToken, note) => dispatch => {
+export const editNote = (note = {}) => dispatch => {
   return axios({
-    method: "post",
-    url: "http://localhost:4000/notes/edit",
+    method: 'post',
+    url: 'http://localhost:4000/notes/edit',
     data: {
-      email,
-      sessionToken,
       note
-    }
+    },
+    timeout: 10000,
+    withCredentials: true
   })
     .then(resp => {
       dispatch({
@@ -98,15 +96,15 @@ export const editNote = (email, sessionToken, note) => dispatch => {
     });
 };
 
-export const deleteNote = (email, sessionToken, note_id) => dispatch => {
+export const deleteNote = note_id => dispatch => {
   return axios({
-    method: "post",
-    url: "http://localhost:4000/notes/delete",
+    method: 'post',
+    url: 'http://localhost:4000/notes/delete',
     data: {
-      email,
-      sessionToken,
       note_id
-    }
+    },
+    timeout: 10000,
+    withCredentials: true
   })
     .then(resp => {
       dispatch({
@@ -128,22 +126,20 @@ export const deleteNote = (email, sessionToken, note_id) => dispatch => {
 };
 
 export const shareNote = (
-  email,
-  sessionToken,
   note_id,
-  emails,
+  emails = [],
   canEdit = false
 ) => dispatch => {
   return axios({
-    method: "post",
-    url: "http://localhost:4000/notes/share",
+    method: 'post',
+    url: 'http://localhost:4000/notes/share',
     data: {
-      email,
-      sessionToken,
       note_id,
       emails,
       canEdit
-    }
+    },
+    timeout: 10000,
+    withCredentials: true
   })
     .then(resp => {
       dispatch({
@@ -167,15 +163,15 @@ export const shareNote = (
     });
 };
 
-export const unshareNote = (email, sessionToken, note_id) => dispatch => {
+export const unshareNote = note_id => dispatch => {
   return axios({
-    method: "post",
-    url: "http://localhost:4000/notes/unshare",
+    method: 'post',
+    url: 'http://localhost:4000/notes/unshare',
     data: {
-      email,
-      sessionToken,
       note_id
-    }
+    },
+    timeout: 10000,
+    withCredentials: true
   })
     .then(resp => {
       dispatch({
@@ -197,15 +193,15 @@ export const unshareNote = (email, sessionToken, note_id) => dispatch => {
     });
 };
 
-export const leaveNote = (email, sessionToken, note_id) => dispatch => {
+export const leaveNote = note_id => dispatch => {
   return axios({
-    method: "post",
-    url: "http://localhost:4000/notes/leave",
+    method: 'post',
+    url: 'http://localhost:4000/notes/leave',
     data: {
-      email,
-      sessionToken,
       note_id
-    }
+    },
+    timeout: 10000,
+    withCredentials: true
   })
     .then(resp => {
       dispatch({
